@@ -18,12 +18,16 @@ include("header.php")
 
 				<form action="" method="post">
 					<div class="form-group">
+						<label for="id_user">Mã công ty</label>
+						<input class="form-control col-md-3" type="text" placeholder="ma" name="id_user" id="id_user">
+					</div>
+					<div class="form-group">
 						<label for="hinhanh">Hình ảnh nổi bật</label>
 						<input type="file" class="form-control-file form-control height-auto col-md-6 " name="hinhanh" id="hinhanh">
 					</div>
 					<div class="form-group">
 						<label for="tencv">Chức vụ</label>
-						<input class="form-control" type="text" placeholder="Johnny Brown" name="tencv" id="tencv">
+						<input class="form-control" type="text" name="tencv" id="tencv">
 					</div>
 					<div class="form-group">
 						<label for="mota_cv">Mô tả việc làm</label>
@@ -50,10 +54,10 @@ include("header.php")
 							<div class="form-group">
 								<label for="hinhthuc_lv">Hình thức làm việc</label>
 								<select class="custom-select col-12" name="hinhthuc_lv" id="hinhthuc_lv">
-									<option selected="Toàn thời gian">Fulltime...</option>
-									<option value="Bán thời gian">Parttime</option>
-									<option value="Làm từ xa">Remote</option>
-									<option value="Thực tập sinh">Intern</option>
+									<option selected="Full time">Full time...</option>
+									<option value="Part time">Part time</option>
+									<option value="Remote">Remote</option>
+									<option value="Intern">Intern</option>
 
 								</select>
 							</div>
@@ -133,10 +137,10 @@ include("header.php")
 					</div>
 					<div class="form-group d-grid gap-2 col-4 mx-auto">
 						<!-- <button name="btnSave" class="btn btn-danger "><i class="bi bi-save2 "></i> Lưu dữ liệu</button> -->
-						<input type="submit" name="them"  class="btn btn-danger " value="Đăng ký đăng bài">
+						<input onclick="return confirm('Bài đăng của bạn đang được admin phê duyệt');" type="submit" name="them" class="btn btn-danger " value="Đăng ký đăng bài">
 					</div>
 				</form>
-				
+
 
 
 			</div>
@@ -145,24 +149,16 @@ include("header.php")
 		</div>
 
 	</div>
-	
-</div>
-<script>
-        // Lấy đối tượng button bằng id
-        var dangKyButton = document.getElementById("dangKyButton");
 
-        // Thêm sự kiện click vào nút button
-        dangKyButton.addEventListener("click", function() {
-            // Hiển thị thông báo khi nút được nhấn
-            alert("Bạn đã đăng ký đăng bài!");
-        });
- </script>
+</div>
+
 
 
 <?php
 
 include('../model/config.php');
 if (isset($_POST['them'])) {
+	$id_user = $_POST['id_user'];
 	$hinhanh = $_POST['hinhanh'];
 	$tencv = $_POST['tencv'];
 	$mota_cv = $_POST['mota_cv'];
@@ -176,10 +172,10 @@ if (isset($_POST['them'])) {
 	$bang_cap = $_POST['bang_cap'];
 	$khuvuc = $_POST['khuvuc'];
 	$trangthaibai = 'Chờ phê duyệt';
-	$themsql = "INSERT INTO tbl_job (hinhanh, tencv, mota_cv, id_career ,hinhthuc_lv,kinh_nghiem,vt_tuyendung,ngay_het,do_tuoi,muc_luong,bang_cap,khuvuc,trangthaibai ) VALUES ('$hinhanh','$tencv','$mota_cv' ,'$id_career','$hinhthuc_lv','$kinh_nghiem','$vt_tuyendung','$ngay_het','$do_tuoi','$muc_luong','$bang_cap','$khuvuc','$trangthaibai')";
+	$themsql = "INSERT INTO tbl_job (id_user,hinhanh, tencv, mota_cv, id_career ,hinhthuc_lv,kinh_nghiem,vt_tuyendung,ngay_het,do_tuoi,muc_luong,bang_cap,khuvuc,trangthaibai ) VALUES ('$id_user','$hinhanh','$tencv','$mota_cv' ,'$id_career','$hinhthuc_lv','$kinh_nghiem','$vt_tuyendung','$ngay_het','$do_tuoi','$muc_luong','$bang_cap','$khuvuc','$trangthaibai')";
 	mysqli_query($conn, $themsql);
 	//echo $themsql; exit();
-	header("location: ./ds_dangpheduyet.php");
+	// header("location: ./ds_dangpheduyet.php");
 
 }
 ?>

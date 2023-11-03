@@ -244,7 +244,7 @@
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="baiviet_ds.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i>
-                                        <span class="hide-menu"> quản lý bài viết </span>
+                                        <span class="hide-menu"> Quản lý bài viết </span>
                                     </a>
                                 </li>
                             </ul>
@@ -269,12 +269,12 @@
                             </a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link"><i class="mdi mdi-emoticon"></i>
+                                    <a href="baidang_td_dscho.php" class="sidebar-link"><i class="mdi mdi-emoticon"></i>
                                         <span class="hide-menu"> Bài đăng chờ phê duyệt </span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i>
+                                    <a href="baidang_td_ds.php" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i>
                                         <span class="hide-menu"> Danh sách bài đăng </span>
                                     </a>
                                 </li>

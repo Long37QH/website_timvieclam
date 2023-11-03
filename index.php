@@ -2,6 +2,14 @@
 include("header.php");
 ?>
 <!-- body -->
+<style>
+  
+  .job_apply:hover a{
+    background-color: #47a6dd;
+    color: white;
+  }
+</style>
+
 <div class="banner-ntd">
   <div class="container">
     <div class="row justify-content-center">
@@ -231,7 +239,7 @@ include("header.php");
   <?php
   $list_job = "SELECT job.job_id, u.user_name,job.tencv,job.hinhanh,job.khuvuc,job.muc_luong,job.hinhthuc_lv,job.ngay_het  FROM tbl_job as job
                     INNER JOIN tbl_user as u ON u.id_user = job.id_user
-                    WHERE trangthaibai = 'Hiển thị' ORDER BY job_id  DESC LIMIT 6";
+                    WHERE trangthaibai = 'Phê duyệt' ORDER BY job_id  DESC LIMIT 6";
   $re = mysqli_query($conn, $list_job);
   $data = [];
 
@@ -273,10 +281,13 @@ include("header.php");
             </div>
           </div>
           <button class="btn_job"><span><?php echo $row['hinhthuc_lv']; ?></button>
+          <div class="job_apply">
+            <a style="border:1px solid #666666;border-radius: 20px; float:right; padding: 2px 12px 2px 12px;" href="job-profile-detail.php?sid=<?php echo $row['job_id']; ?> "><i class="fas fa-location-arrow"> Apply</i></a>
+          </div>
         </div>
       </div>
     <?php endforeach; ?>
-  
+
   </div>
 </div>
 
