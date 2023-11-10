@@ -30,21 +30,28 @@ include("header.php");
                                 'tomtatbv' => $row['tomtatbv'],
                             );
                         }
+
                         ?>
-                        <?php foreach ($data as $row) : ?>
+                        <?php foreach ($data as $row) :
+                            $baiviet_id = $row['baiviet_id']; // Lấy ID bài viết từ dữ liệu
+                            // Mã hóa ID bài viết bằng base64_encode
+                            $encoded_id = base64_encode($baiviet_id);
+                            // Tạo liên kết sử dụng ID đã mã hóa
+                            $link = "Blog_detail.php?sid=" . urlencode($encoded_id);
+                        ?>
                             <div class="col-md-6   d-flex ftco">
                                 <div class="entry align-self-stretch">
 
-                                    <a href="Blog_detail.php?sid=<?php echo $row['baiviet_id']; ?>" class="block-20 " style="background-image: url( 'public/css_timviec/images/blog/<?php echo $row['hinhanh']; ?>'); " title="Những nghề “hot” nhất trong kỷ nguyên 4.0">
+                                    <a href="<?php echo $link; ?>" class="block-20 " style="background-image: url( 'public/css_timviec/images/blog/<?php echo $row['hinhanh']; ?>'); " title="Những nghề “hot” nhất trong kỷ nguyên 4.0">
                                     </a>
                                     <div class="text mt-3 ">
-                                        <h3 class="heading "><a href="Blog_detail.php?sid=<?php echo $row['baiviet_id']; ?> " title="Những nghề “hot” nhất trong kỷ nguyên 4.0 "><?php echo $row['tieude']; ?> </a></h3>
+                                        <h3 class="heading "><a href="<?php echo $link; ?>" title="Những nghề “hot” nhất trong kỷ nguyên 4.0 "><?php echo $row['tieude']; ?> </a></h3>
                                     </div>
                                     <div class="content">
                                         <?php echo $row['tomtatbv']; ?>
                                     </div>
                                     <div class="view-more">
-                                        <a href="Blog_detail.php?sid=<?php echo $row['baiviet_id']; ?> ">Xem thêm</a>
+                                        <a href="<?php echo $link; ?>">Xem thêm</a>
                                     </div>
                                 </div>
                             </div>
@@ -110,11 +117,17 @@ include("header.php");
                 <div class="categories ">
                     <h3 class="heading-3 card-header ">BÀI MỚI CẬP NHẬT</h3>
                     <div class="categories-detail ">
-                        <?php foreach ($data as $row2) : ?>
+                        <?php foreach ($data as $row2) :
+                            $baiviet_id = $row2['baiviet_id']; // Lấy ID bài viết từ dữ liệu
+                            // Mã hóa ID bài viết bằng base64_encode
+                            $encoded_id = base64_encode($baiviet_id);
+                            // Tạo liên kết sử dụng ID đã mã hóa
+                            $link2 = "Blog_detail.php?sid=" . urlencode($encoded_id);
+                        ?>
                             <div class="block-21 mb-3 d-flex ">
-                                <a class="img mr-3 " href="Blog_detail.php?sid=<?php echo $row2['baiviet_id']; ?>" style="background-image: url(public/css_timviec/images/blog/<?php echo $row2['hinhanh']; ?>); "></a>
+                                <a class="img mr-3 " href="<?php echo $link2; ?>" style="background-image: url(public/css_timviec/images/blog/<?php echo $row2['hinhanh']; ?>); "></a>
                                 <div class="text ">
-                                    <h3 class="heading "><a href="Blog_detail.php?sid=<?php echo $row2['baiviet_id']; ?>" title="5 bước để doanh nghiệp phát triển chiến lược nội dung. "><?php echo $row2['tieude']; ?></a></h3>
+                                    <h3 class="heading "><a href="<?php echo $link2; ?>" title="5 bước để doanh nghiệp phát triển chiến lược nội dung. "><?php echo $row2['tieude']; ?></a></h3>
                                     <div class="meta ">
                                         <div>
                                             <i class="fa fa-calendar "></i> <?php echo $row2['ngaydang']; ?></a>

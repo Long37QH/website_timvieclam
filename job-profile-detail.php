@@ -1,5 +1,6 @@
 <?php include("header.php");
-$job_id = $_GET['sid'];
+$encoded_id = $_GET['sid'];
+$job_id = base64_decode(urldecode($encoded_id));
 $sua_sql = "SELECT * FROM tbl_job j INNER JOIN tbl_user u on u.id_user=j.id_user WHERE job_id = '$job_id'";
 $result = mysqli_query($conn, $sua_sql);
 $row = mysqli_fetch_assoc($result);
@@ -399,24 +400,28 @@ $row = mysqli_fetch_assoc($result);
                         <div class="jobs-list ">
 
                             <div class="job-item active " id="job-item-35B4B2E2 ">
-                                <?php foreach ($data as $row) : ?>
+                                <?php foreach ($data as $row) :
+                                    $job_id = $row['job_id']; // Lấy ID bài viết từ dữ liệu
+                                    // Mã hóa ID bài viết bằng base64_encode
+                                    $encoded_id = base64_encode($job_id);
+                                    // Tạo liên kết sử dụng ID đã mã hóa
+                                    $link = "job-profile-detail.php?sid=" . urlencode($encoded_id);
+                                ?>
                                     <div class="figure ">
                                         <div class="image ">
-
                                             <img class="lazy-img " src="public/images/<?php echo $row['hinhanh'] ?> " alt="">
-
                                         </div>
                                         <div class="figcaption ">
                                             <div class="timeago "> <span class="new ">
                                                     <font color="FF0000 ">(Mới)</font>
                                                 </span> </div>
                                             <div class="title ">
-                                                <a class="job_link " data-id="35B4B2E2 " href="job-profile-detail.php?sid=<?php echo $row['job_id']; ?> "  title=" ">
+                                                <a class="job_link " data-id="35B4B2E2 " href="<?php echo $link; ?>" title=" ">
                                                     <?php echo $row['user_name'] ?>
                                                 </a>
                                             </div>
                                             <div class="caption ">
-                                                <a class="class-name " href="job-profile-detail.php?sid=<?php echo $row['job_id']; ?>" title=" "><?php echo $row['tencv'] ?></a>
+                                                <a class="class-name " href="<?php echo $link; ?>" title=" "><?php echo $row['tencv'] ?></a>
                                                 <div class="salary ">
                                                     <span><i class="icon-job fas fa-dollar-sign "></i></i><?php echo $row['muc_luong'] ?></span>
                                                 </div>

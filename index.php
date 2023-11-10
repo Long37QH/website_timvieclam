@@ -3,8 +3,7 @@ include("header.php");
 ?>
 <!-- body -->
 <style>
-  
-  .job_apply:hover a{
+  .job_apply:hover a {
     background-color: #47a6dd;
     color: white;
   }
@@ -257,14 +256,20 @@ include("header.php");
   }
   ?>
   <div class="job-list d-flex">
-    <?php foreach ($data as $row) : ?>
+    <?php foreach ($data as $row) :
+      $job_id = $row['job_id']; // Lấy ID bài viết từ dữ liệu
+      // Mã hóa ID bài viết bằng base64_encode
+      $encoded_id = base64_encode($job_id);
+      // Tạo liên kết sử dụng ID đã mã hóa
+      $link = "job-profile-detail.php?sid=" . urlencode($encoded_id);
+    ?>
       <div class="job d-flex">
         <div class="job-top">
-          <a class="" href=""><img src="public/images/<?php echo $row['hinhanh']; ?>" alt=""></a>
+          <a class="" href="<?php echo $link; ?>"><img src="public/images/<?php echo $row['hinhanh']; ?>" alt=""></a>
         </div>
         <div class="job-content">
           <div class="job-title">
-            <a href=""><?php echo $row['tencv']; ?></a>
+            <a href="<?php echo $link; ?>"><?php echo $row['tencv']; ?></a>
           </div>
           <div class="job-company">
             <p><?php echo $row['user_name']; ?></p>
@@ -282,7 +287,7 @@ include("header.php");
           </div>
           <button class="btn_job"><span><?php echo $row['hinhthuc_lv']; ?></button>
           <div class="job_apply">
-            <a style="border:1px solid #666666;border-radius: 20px; float:right; padding: 2px 12px 2px 12px;" href="job-profile-detail.php?sid=<?php echo $row['job_id']; ?> "><i class="fas fa-location-arrow"> Apply</i></a>
+            <a style="border:1px solid #666666;border-radius: 20px; float:right; padding: 2px 12px 2px 12px;" href="<?php echo $link; ?>"><i class="fas fa-location-arrow"> Apply</i></a>
           </div>
         </div>
       </div>
