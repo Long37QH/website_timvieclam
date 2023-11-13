@@ -1,8 +1,8 @@
 <?php include("header.php");
 $encoded_id = $_GET['sid'];
 $job_id = base64_decode(urldecode($encoded_id));
-$sua_sql = "SELECT * FROM tbl_job j INNER JOIN tbl_user u on u.id_user=j.id_user WHERE job_id = '$job_id'";
-$result = mysqli_query($conn, $sua_sql);
+$sql = "SELECT * FROM tbl_job j INNER JOIN tbl_user u on u.id_user=j.id_user WHERE job_id = '$job_id'";
+$result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 ?>
 
@@ -109,8 +109,59 @@ $row = mysqli_fetch_assoc($result);
                                 <div class="box-function">
                                     <!-- <button type="button" class="el-button el-button--info is-plain"><span>&nbsp;Lưu hồ sơ
                                         </span></button> -->
-                                    <button type="button" style="padding: 10px;" class="el-button btn-call-action el-button--warning"><span>&nbsp;Ứng tuyển ngay
-                                        </span></button>
+                                    <button type="button" style="padding: 10px;" class="el-button btn-call-action el-button--warning" data-toggle="modal" data-target="#addCandidateModal">
+                                        <span>&nbsp;Ứng tuyển ngay</span>
+                                    </button>
+                                    <div class="modal fade" id="addCandidateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Nhập Thông Tin Ứng Tuyển</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Form to input candidate information -->
+                                                    <form id="addCandidateForm" action="apply_cv.php" method="post" enctype="multipart/form-data">
+                                                        <div class="form-group">
+                                                            <label for="job_id">Mã công việc</label>
+                                                            <input type="text" class="form-control" id="job_id" name="job_id" value="<?php echo $job_id; ?>" readonly>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="id_user">Mã ứng viên</label>
+                                                            <input type="text" class="form-control" id="id_user" name="id_user" value="<?php echo $id_user; ?>" readonly>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="name">Tên ứng viên</label>
+                                                            <input type="text" class="form-control" id="name" name="name" value="<?php echo $user_name; ?>" placeholder="Nhập tên">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="email">Email</label>
+                                                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>" placeholder="Nhập email">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="phone">Số điện thoại</label>
+                                                            <input type="tel" class="form-control" id="phone" name="phone" value="<?php echo $phone; ?>" placeholder="Nhập số điện thoại">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="mess">Tin nhắn</label>
+                                                            <textarea class="form-control" name="mess" id="mess" cols="30" rows="5"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="file_cv">Upload CV* (PDF)</label>
+                                                            <input type="file" class="form-control-file" accept=".pdf" id="file_cv" name="file_cv">
+                                                        </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                    <button type="submit" style="padding: 10px;" class="el-button btn-call-action el-button--warning">Nộp Đơn</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,9 @@
 <?php
 include("model/config.php");
+$id_user = "uv01";
+$user_name = "Đoan Tuân";
+$email = "Tuandoan@gmail.com";
+$phone = "0888888888";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +24,12 @@ include("model/config.php");
     <link rel="stylesheet" href="public/css_timviec/css/style-menu.css">
     <link rel="stylesheet" href="public/css_timviec/css/t_style.css">
     <link rel="stylesheet" href="public/css_timviec/css/job.css">
+
+    <!-- modal -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -60,7 +70,7 @@ include("model/config.php");
                   <a href="contact.html">Liên hệ</a>
               </li>
               -->
-                <li style="margin-left: 10px;font-weight: bold;color: #f38121;"> Tuấn Đoàn</li>
+                <li style="margin-left: 10px;font-weight: bold;color: #f38121;"> <?php echo $user_name; ?></li>
                 <li>
                     <a href="#" class="menu-buttons"><i class="fas fa-user-tie"></i></a>
                 </li>

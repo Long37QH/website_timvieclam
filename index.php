@@ -3,8 +3,12 @@ include("header.php");
 ?>
 <!-- body -->
 <style>
-  .job_apply:hover a {
-    background-color: #47a6dd;
+  .apply:hover a {
+    background-color: #f38121;
+    color: white;
+  }
+
+  .fas:hover {
     color: white;
   }
 </style>
@@ -72,11 +76,11 @@ include("header.php");
   <div class="container">
     <div class="row search-job ml-1">
       <div class="col-4 mt-3 my-0 px-1">
-        <span class="ctn-icon1"> <i class="fa fa-briefcase" aria-hidden="true"></i></span>
+        <!-- <span class="ctn-icon1"> <i class="fa fa-briefcase" aria-hidden="true"></i></span> -->
         <input class="form-control search-job__input-name ui-autocomplete-input" value="" placeholder="Tên công việc, vị trí bạn muốn..." id="keyword" autocomplete="off">
       </div>
       <div class="col-3 mt-3 px-1">
-        <span class="ctn-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+        <!-- <span class="ctn-icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span> -->
 
         <select class="form-control search-job__input-location" id="select-state">
           <option value="">Tất cả địa điểm</option>
@@ -152,7 +156,7 @@ include("header.php");
         </select>
       </div>
       <div class="col-3 mt-3 px-1">
-        <span class="ctn-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+        <!-- <span class="ctn-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span> -->
         <select class="form-control search-job__input-categories">
           <option value="">Tất cả ngành nghề</option>
           <option value="10101">An toàn lao động</option>
@@ -162,7 +166,7 @@ include("header.php");
         </select>
       </div>
       <div class="col-2 mt-3 px-1">
-        <span class="ctn-icon text-white pl-2 search-job--input"><i class="fa fa-search" aria-hidden="true"></i></span>
+        <!-- <span class="ctn-icon text-white pl-2 search-job--input"><i class="fa fa-search" aria-hidden="true"></i></span> -->
         <button type="submit" style="background-color:#f38121 ;" class="form-control search-job__input-submit btn btn-block btn-warning">Tìm
           Kiếm</button>
       </div>
@@ -179,7 +183,7 @@ include("header.php");
   <div class="box collapse container" id="emoji" style="background-color: #47a6dd;">
     <div class="row search-job ml-1">
       <div class="col-3 mt-2 mb-3 px-1">
-        <span class="ctn-icon"><i class="fas fa-money-bill"></i></span>
+        <!-- <span class="ctn-icon"><i class="fas fa-money-bill"></i></span> -->
         <select class="form-control search-job__input-location">
           <option value="">Tất cả mức lương</option>
           <option value="1">Dưới 3 triệu</option>
@@ -194,7 +198,7 @@ include("header.php");
         </select>
       </div>
       <div class="col-3 mt-2 mb-3 px-1">
-        <span class="ctn-icon"><i class="far fa-chart-bar"></i></span>
+        <!-- <span class="ctn-icon"><i class="far fa-chart-bar"></i></span> -->
         <select class="form-control search-job__input-location">
           <option value="">Tất cả kinh nghiệm</option>
           <option value="1">Chưa có</option>
@@ -208,7 +212,7 @@ include("header.php");
         </select>
       </div>
       <div class="col-3 mt-2 mb-3 px-1">
-        <span class="ctn-icon"><i class="fas fa-user-clock"></i></span>
+        <!-- <span class="ctn-icon"><i class="fas fa-user-clock"></i></span> -->
         <select class="form-control search-job__input-categories">
           <option value="">Hình thức làm việc</option>
           <option value="10101"> Toàn thời gian </option>
@@ -218,7 +222,7 @@ include("header.php");
         </select>
       </div>
       <div class="col-3 mt-2 mb-3 px-1">
-        <span class="ctn-icon"><i class="fas fa-city"></i></span>
+        <!-- <span class="ctn-icon"><i class="fas fa-city"></i></span> -->
         <select class="form-control search-job__input-categories">
           <option value="">Tất cả lĩnh vực</option>
           <option value="10101"> Agency (Design/Development) </option>
@@ -286,8 +290,8 @@ include("header.php");
             </div>
           </div>
           <button class="btn_job"><span><?php echo $row['hinhthuc_lv']; ?></button>
-          <div class="job_apply">
-            <a style="border:1px solid #666666;border-radius: 20px; float:right; padding: 2px 12px 2px 12px;" href="<?php echo $link; ?>"><i class="fas fa-location-arrow"> Apply</i></a>
+          <div class="apply">
+            <a style="border:1px solid #666666;border-radius: 20px; float:right; padding: 2px 12px 2px 12px;" href="<?php echo $link; ?>"><i class="fas fa-location-arrow"></i>Apply</a>
           </div>
         </div>
       </div>

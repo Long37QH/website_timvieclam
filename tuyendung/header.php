@@ -1,15 +1,19 @@
+<?php
+include("../model/config.php");
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+	<title>Tìm việc làm</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
+	<!-- <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png"> -->
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -56,7 +60,7 @@
 			<div class="menu-icon dw dw-menu"></div>
 			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
 			<div class="header-search">
-				<form>
+				<!-- <form>
 					<div class="form-group mb-0">
 						<i class="dw dw-search2 search-icon"></i>
 						<input type="text" class="form-control search-input" placeholder="Search Here">
@@ -89,7 +93,29 @@
 							</div>
 						</div>
 					</div>
-				</form>
+				</form> -->
+				<nav>
+					<?php
+					$menu = "SELECT * FROM menu WHERE trangthaiAH = 'Hiển thị' ORDER BY vitri ASC LIMIT 5";
+					$re = mysqli_query($conn, $menu);
+					$data = [];
+
+					while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
+						$data[] = array(
+							'tenMenu' => $row['tenMenu'],
+							'link' => $row['link'],
+						);
+					}
+					?>
+
+					<ul class="row">
+						<?php foreach ($data as $row) : ?>
+							<li style="padding: 15px;">
+								<a href="../<?php echo $row['link']; ?>"><?php echo $row['tenMenu']; ?> </a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</nav>
 			</div>
 		</div>
 		<div class="header-right">
@@ -254,8 +280,8 @@
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="index.html">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
+				<img src="../public/css_timviec/images/Logo.png" alt="" class="dark-logo">
+				<img src="public/css_timviec/images/Logo.png" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -265,10 +291,9 @@
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
 					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+						<a href="index.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Bảng điều khiển</span>
 						</a>
-
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle">
@@ -277,17 +302,13 @@
 						<ul class="submenu">
 							<li><a href="goidang.php">Đăng tin ngay</a></li>
 							<li><a href="ds_dangpheduyet.php">Danh sách chờ phê duyệt</a></li>
-							<li><a href="ionicons.html">Ionicons Icons</a></li>
-							<li><a href="themify.html">Themify Icons</a></li>
-							<li><a href="custom-icon.html">Custom Icons</a></li>
 						</ul>
 
 					</li>
 					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+						<a href="javascript:;" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-library"></span><span class="mtext">Hồ sơ</span>
 						</a>
-
 					</li>
 
 
@@ -296,11 +317,8 @@
 							<span class="micon dw dw-paint-brush"></span><span class="mtext">Danh sách ứng viên</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="font-awesome.html">FontAwesome Icons</a></li>
-							<li><a href="foundation.html">Foundation Icons</a></li>
-							<li><a href="ionicons.html">Ionicons Icons</a></li>
-							<li><a href="themify.html">Themify Icons</a></li>
-							<li><a href="custom-icon.html">Custom Icons</a></li>
+							<li><a href="#">Danh sách ưng viên mới</a></li>
+							<li><a href="#">Ứng viên đã phê duyệt</a></li>
 						</ul>
 					</li>
 
@@ -319,9 +337,9 @@
 					</li>
 
 					<li>
-						<a href="" target="_blank" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-paper-plane1"></span>
-							<span class="mtext">Đăng xuất <img src="vendors/images/coming-soon.png" alt="" width="25"></span>
+						<a href="#" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-logout-1"></span>
+							<span class="mtext">Đăng xuất</span>
 						</a>
 					</li>
 				</ul>
