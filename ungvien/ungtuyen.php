@@ -25,16 +25,17 @@ include("header.php")
 		$sql = "SELECT tbl_job.job_id, tbl_job.tencv,tbl_job.vt_tuyendung,tbl_job.muc_luong,tbl_job.ngay_het,tbl_user.user_name,tbl_apply.trangthaicv,tbl_apply.file_cv
 							FROM tbl_apply 
 							INNER JOIN tbl_job ON tbl_job.job_id = tbl_apply.job_id
-							INNER JOIN tbl_user ON tbl_user.id_user = tbl_job.id_user";
+							INNER JOIN tbl_user ON tbl_user.id_user = tbl_job.id_user
+							WHERE tbl_apply.trangthaicv = 'Chờ phê duyệt'";
 
 		$re = mysqli_query($conn, $sql);
 
 		$data = [];
 
-		$TT = 0;
+		$TT = 1;
 		while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
 			$data[] = array(
-				//'TT' => $TT,
+				'TT' => $TT,
 				"job_id" => $row["job_id"],
 				'tencv' => $row['tencv'],
 				'user_name' => $row['user_name'],
@@ -73,7 +74,7 @@ include("header.php")
 						$link = "job-profile-detail.php?sid=" . urlencode($encoded_id);
 					?>
 						<tr>
-							<td class="table-plus"><?php echo $TT; ?></td>
+							<td class="table-plus"><?php echo $row['TT']; ?></td>
 							<td><?php echo $row['tencv']; ?></td>
 							<td style="width: 150px;"><?php echo $row['user_name']; ?></td>
 							<td><?php echo $row['vt_tuyendung']; ?></td>

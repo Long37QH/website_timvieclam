@@ -29,7 +29,7 @@
 									</div>
 								</div>
 								<div class="cta">
-									<a href="#" class="btn btn-primary btn-rounded btn-lg">Get Started</a>
+									<a href="#" class="btn btn-primary btn-rounded btn-lg">Đăng ký</a>
 								</div>
 							</div>
 						</div>
@@ -56,7 +56,7 @@
 									</div>
 								</div>
 								<div class="cta">
-									<a href="dangvieclam.php" class="btn btn-primary btn-rounded btn-lg">Get Started</a>
+									<a href="dangvieclam.php" class="btn btn-primary btn-rounded btn-lg">Đăng ký</a>
 								</div>
 							</div>
 						</div>
@@ -83,7 +83,7 @@
 									</div>
 								</div>
 								<div class="cta">
-									<a href="#" class="btn btn-primary btn-rounded btn-lg">Get Started</a>
+									<a href="#" class="btn btn-primary btn-rounded btn-lg">Đăng ký</a>
 								</div>
 							</div>
 						</div>
@@ -110,7 +110,7 @@
 									</div>
 								</div>
 								<div class="cta">
-									<a href="#" class="btn btn-primary btn-rounded btn-lg">Get Started</a>
+									<a href="#" class="btn btn-primary btn-rounded btn-lg">Đăng ký</a>
 								</div>
 							</div>
 						</div>
@@ -137,7 +137,7 @@
 									</div>
 								</div>
 								<div class="cta">
-									<a href="#" class="btn btn-primary btn-rounded btn-lg">Get Started</a>
+									<a href="#" class="btn btn-primary btn-rounded btn-lg">Đăng ký</a>
 								</div>
 							</div>
 						</div>
@@ -164,7 +164,7 @@
 									</div>
 								</div>
 								<div class="cta">
-									<a href="#" class="btn btn-primary btn-rounded btn-lg">Get Started</a>
+									<a href="#" class="btn btn-primary btn-rounded btn-lg">Đăng ký</a>
 								</div>
 							</div>
 						</div>

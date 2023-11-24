@@ -1,6 +1,5 @@
-<?php include("header.php");
-		$id_user = "uv01";
-		$user_name = "Công Ty TNHH TM DV Tổng Hợp Đăng Khoa";
+<?php 
+include("header.php");	
 ?>
 <div class="main-container">
 	<div class="pd-ltr-20">
@@ -29,10 +28,10 @@
 
 			$data = [];
 
-			$TT = 0;
+			$TT = 1;
 			while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
 				$data[] = array(
-					//'TT' => $TT,
+					'TT' => $TT,
 					"job_id" => $row["job_id"],
 					'tencv' => $row['tencv'],
 					'congty' => $row['congty'],
@@ -67,7 +66,7 @@
 						$link = "job-profile-detail.php?sid=" . urlencode($encoded_id);
 					 ?>
 						<tr>
-							<td class="table-plus"><?php echo $TT; ?></td>
+							<td class="table-plus"><?php echo $row['TT']; ?></td>
 							<td><?php echo $row['tencv']; ?></td>
 							<td style="width: 150px;"><?php echo $row['congty']; ?></td>
 							<td><?php echo $row['vt_tuyendung']; ?></td>

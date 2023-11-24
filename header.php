@@ -1,9 +1,25 @@
 <?php
+session_start();
 include("model/config.php");
-$id_user = "uv01";
-$user_name = "Đoan Tuân";
-$email = "Tuandoan@gmail.com";
-$phone = "0888888888";
+$id_user = "";
+$user_name = "";
+$email = "";
+$phone = "";
+if(isset($_SESSION['tkungvien']) && isset($_SESSION['id_user'])){
+    $id_user = $_SESSION['id_user'];
+    $sua_sql = "SELECT * FROM tbl_user WHERE id_user = '$id_user'";
+
+    $result = mysqli_query($conn, $sua_sql);
+
+    $row2 = mysqli_fetch_assoc($result);
+
+    if (mysqli_num_rows($result) == 1){
+        $user_name = $row2['user_name'];
+        $email = $row2['email'];
+        $phone = $row2['phone'];
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

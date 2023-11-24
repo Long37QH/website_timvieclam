@@ -159,6 +159,7 @@ include("header.php")
 include('../model/config.php');
 if (isset($_POST['them'])) {
 	$id_user = $_POST['id_user'];
+	$cty_id = $_POST['id_user'];
 	$hinhanh = $_POST['hinhanh'];
 	$tencv = $_POST['tencv'];
 	$mota_cv = $_POST['mota_cv'];
@@ -172,11 +173,10 @@ if (isset($_POST['them'])) {
 	$bang_cap = $_POST['bang_cap'];
 	$khuvuc = $_POST['khuvuc'];
 	$trangthaibai = 'Chờ phê duyệt';
-	$themsql = "INSERT INTO tbl_job (id_user,hinhanh, tencv, mota_cv, id_career ,hinhthuc_lv,kinh_nghiem,vt_tuyendung,ngay_het,do_tuoi,muc_luong,bang_cap,khuvuc,trangthaibai ) VALUES ('$id_user','$hinhanh','$tencv','$mota_cv' ,'$id_career','$hinhthuc_lv','$kinh_nghiem','$vt_tuyendung','$ngay_het','$do_tuoi','$muc_luong','$bang_cap','$khuvuc','$trangthaibai')";
+	$themsql = "INSERT INTO tbl_job (id_user,cty_id,hinhanh, tencv, mota_cv, id_career ,hinhthuc_lv,kinh_nghiem,vt_tuyendung,ngay_het,do_tuoi,muc_luong,bang_cap,khuvuc,trangthaibai ) VALUES ('$id_user','$cty_id','$hinhanh','$tencv','$mota_cv' ,'$id_career','$hinhthuc_lv','$kinh_nghiem','$vt_tuyendung','$ngay_het','$do_tuoi','$muc_luong','$bang_cap','$khuvuc','$trangthaibai')";
 	mysqli_query($conn, $themsql);
 	//echo $themsql; exit();
-	// header("location: ./ds_dangpheduyet.php");
-
+	header("location: ./ds_dangpheduyet.php");
 }
 ?>
 <?php include("footer.php") ?>

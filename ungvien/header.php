@@ -1,5 +1,21 @@
 <?php
 include("../model/config.php");
+
+session_start();
+if (!isset($_SESSION['tkungvien'])) {
+    header('location:Login.php');
+} else {
+    $tkungvien = $_SESSION['tkungvien'];
+    $id_user = $_SESSION['id_user'];
+}
+
+
+$sua_sql = "SELECT * FROM tbl_user WHERE id_user = '$id_user'";
+
+$result = mysqli_query($conn, $sua_sql);
+
+$row2 = mysqli_fetch_assoc($result);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,7 +77,9 @@ include("../model/config.php");
 			<div class="header-search">
 				<nav>
 					<?php
-					$menu = "SELECT * FROM menu WHERE trangthaiAH = 'Hiển thị' ORDER BY vitri ASC LIMIT 5";
+					$menu = "SELECT * FROM menu 
+					WHERE trangthaiAH = 'Hiển thị' AND loaimenu = '0' OR loaimenu = '1'
+					ORDER BY vitri ASC LIMIT 5";
 					$re = mysqli_query($conn, $menu);
 					$data = [];
 
@@ -153,13 +171,11 @@ include("../model/config.php");
 						<span class="user-icon">
 							<img src="vendors/images/photo1.jpg" alt="">
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						<span class="user-name"><?php echo $row2['user_name'];?> </span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="logout.php"><i class="dw dw-logout"></i> Đăng Xuất</a>
 					</div>
 				</div>
 			</div>
@@ -265,9 +281,9 @@ include("../model/config.php");
 							<span class="micon dw dw-edit2"></span><span class="mtext">Quản lý việc làm</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Việc làm đã lưu</a></li>
+							<!-- <li><a href="#">Việc làm đã lưu</a></li> -->
 							<li><a href="ungtuyen.php">Việc làm ứng tuyển</a></li>
-							<li><a href="#">Thông báo việc làm</a></li>
+							<li><a href="tbtuyendung.php">Hồ sơ đã phê duyệt</a></li>
 
 						</ul>
 
@@ -285,7 +301,7 @@ include("../model/config.php");
 						</a>
 					</li>
 					<li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
+						<a href="thongbao.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-invoice"></span><span class="mtext">Thông báo </span>
 						</a>
 					</li>
@@ -294,7 +310,7 @@ include("../model/config.php");
 					</li>
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="logout.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-logout-1"></span>
 							<span class="mtext">Đăng xuất</span>
 						</a>

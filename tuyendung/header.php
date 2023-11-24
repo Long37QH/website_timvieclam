@@ -1,5 +1,7 @@
 <?php
 include("../model/config.php");
+$id_user = "dvu01";
+$user_name = "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC";
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +98,9 @@ include("../model/config.php");
 				</form> -->
 				<nav>
 					<?php
-					$menu = "SELECT * FROM menu WHERE trangthaiAH = 'Hiển thị' ORDER BY vitri ASC LIMIT 5";
+					$menu = "SELECT * FROM menu 
+					WHERE trangthaiAH = 'Hiển thị' AND loaimenu = '0' OR loaimenu = '2'
+					ORDER BY vitri ASC LIMIT 5";
 					$re = mysqli_query($conn, $menu);
 					$data = [];
 
@@ -279,7 +283,7 @@ include("../model/config.php");
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.html">
+			<a href="index.php">
 				<img src="../public/css_timviec/images/Logo.png" alt="" class="dark-logo">
 				<img src="public/css_timviec/images/Logo.png" alt="" class="light-logo">
 			</a>
@@ -302,6 +306,7 @@ include("../model/config.php");
 						<ul class="submenu">
 							<li><a href="goidang.php">Đăng tin ngay</a></li>
 							<li><a href="ds_dangpheduyet.php">Danh sách chờ phê duyệt</a></li>
+							<li><a href="ds_pheduyetbai.php">Danh sách phê duyệt</a></li>
 						</ul>
 
 					</li>
@@ -317,8 +322,8 @@ include("../model/config.php");
 							<span class="micon dw dw-paint-brush"></span><span class="mtext">Danh sách ứng viên</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Danh sách ưng viên mới</a></li>
-							<li><a href="#">Ứng viên đã phê duyệt</a></li>
+							<li><a href="ds_uvmoi.php">Danh sách ưng viên mới</a></li>
+							<li><a href="ds_dapheduyet_uv.php">Ứng viên đã phê duyệt</a></li>
 						</ul>
 					</li>
 

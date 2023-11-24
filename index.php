@@ -3,14 +3,19 @@ include("header.php");
 ?>
 <!-- body -->
 <style>
-  .apply:hover a {
-    background-color: #f38121;
-    color: white;
-  }
+    .apply:hover a {
+        background-color: #f38121;
+        color: aliceblue;
+    }
 
-  .fas:hover {
-    color: white;
-  }
+    .fas:hover {
+        color: white;
+    }
+    .apply a{
+      color: #f38121;
+      font-weight: bold;
+    }
+</style>
 </style>
 
 <div class="banner-ntd">
