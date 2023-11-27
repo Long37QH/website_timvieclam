@@ -6,13 +6,13 @@ if (!isset($_SESSION['tkungvien'])) {
     header('location:Login.php');
 } else {
     $tkungvien = $_SESSION['tkungvien'];
-    $id_user = $_SESSION['id_user'];
+    $id_tkuv = $_SESSION['id_tkuv'];
 }
 
 
-$sua_sql = "SELECT * FROM tbl_user WHERE id_user = '$id_user'";
+$sql = "SELECT * FROM tbl_user2 WHERE id_user = '$id_tkuv'";
 
-$result = mysqli_query($conn, $sua_sql);
+$result = mysqli_query($conn, $sql);
 
 $row2 = mysqli_fetch_assoc($result);
 

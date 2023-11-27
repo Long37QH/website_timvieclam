@@ -22,9 +22,10 @@ include("header.php")
             </div>
         </div>
         <?php
-        $sql = 'SELECT job_id,user_name, tencv,hinhthuc_lv,hinhanh,khuvuc,trangthaibai FROM tbl_job j 
-        INNER JOIN tbl_user u ON j.id_user = u.id_user
-         WHERE trangthaibai = "phê duyệt" AND u.id_user=' . '"' . $id_user . '"';
+        $sql = 'SELECT job_id,user_name, tencv,hinhthuc_lv,hinhanh,khuvuc,trangthaibai 
+                FROM tbl_job 
+                INNER JOIN tbl_user2  ON tbl_user2.id_user = tbl_job.id_user 
+                WHERE trangthaibai = "phê duyệt" AND tbl_user2.id_user=' . '"' . $id_tktd . '"';
 
         $re = mysqli_query($conn, $sql);
 

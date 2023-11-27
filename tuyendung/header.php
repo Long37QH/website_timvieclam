@@ -1,9 +1,22 @@
 <?php
 include("../model/config.php");
-$id_user = "dvu01";
-$user_name = "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC";
-?>
 
+session_start();
+if (!isset($_SESSION['tktuyendung'])) {
+    header('location:Login.php');
+} else {
+    $tktuyendung = $_SESSION['tktuyendung'];
+	$id_tktd = $_SESSION['id_tktd'];
+}
+
+
+$sql = "SELECT * FROM tbl_user2 WHERE id_user = '$id_tktd'";
+
+$result = mysqli_query($conn, $sql);
+
+$row2 = mysqli_fetch_assoc($result);
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -192,13 +205,11 @@ $user_name = "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC";
 						<span class="user-icon">
 							<img src="vendors/images/photo1.jpg" alt="">
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						<span class="user-name"><?php echo $row2['user_name'];?> </span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>
+						<a class="dropdown-item" href="logout.php"><i class="dw dw-logout"></i> Đăng Xuất</a>
 					</div>
 				</div>
 			</div>
@@ -311,7 +322,7 @@ $user_name = "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC";
 
 					</li>
 					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle no-arrow">
+						<a href="profile.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-library"></span><span class="mtext">Hồ sơ</span>
 						</a>
 					</li>
@@ -322,27 +333,27 @@ $user_name = "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC";
 							<span class="micon dw dw-paint-brush"></span><span class="mtext">Danh sách ứng viên</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="ds_uvmoi.php">Danh sách ưng viên mới</a></li>
+							<li><a href="ds_chopheduyet_uv.php">Ứng viên chờ phê duyệt </a></li>
 							<li><a href="ds_dapheduyet_uv.php">Ứng viên đã phê duyệt</a></li>
 						</ul>
 					</li>
 
-					<li>
+					<!-- <li>
 						<a href="chat.html" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Nhắn tin</span>
 						</a>
-					</li>
-					<li>
+					</li> -->
+					<!-- <li>
 						<a href="invoice.html" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-invoice"></span><span class="mtext">Thông báo ứng viên</span>
 						</a>
-					</li>
+					</li> -->
 					<li>
 						<div class="dropdown-divider"></div>
 					</li>
 
 					<li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="logout.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-logout-1"></span>
 							<span class="mtext">Đăng xuất</span>
 						</a>

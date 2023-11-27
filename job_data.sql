@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2023 at 02:11 AM
+-- Generation Time: Nov 27, 2023 at 11:20 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -32,6 +32,7 @@ CREATE TABLE `menu` (
   `tenMenu` varchar(50) NOT NULL,
   `vitri` int(11) NOT NULL,
   `capmenu` int(11) NOT NULL,
+  `loaimenu` int(11) NOT NULL,
   `link` varchar(35) NOT NULL,
   `trangthaiAH` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
@@ -40,15 +41,15 @@ CREATE TABLE `menu` (
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`menu_id`, `tenMenu`, `vitri`, `capmenu`, `link`, `trangthaiAH`) VALUES
-(1, 'Trang Chủ', 1, 1, 'index.php', 'Hiển thị'),
-(2, 'Giới Thiệu', 2, 1, 'blog.php', 'Hiển thị'),
-(3, 'Việc Làm', 3, 1, 'job.php', 'Hiển thị'),
-(4, 'Tuyển Dụng', 4, 1, 'tuyendung', 'Hiển thị'),
-(5, 'Ứng Viên', 5, 1, 'ungvien', 'Hiển thị'),
-(6, 'Bài Viết', 6, 1, 'blog.php', 'Ẩn'),
-(7, 'test', 7, 1, 'blog.php', 'Ẩn'),
-(9, '', 0, 0, '', '');
+INSERT INTO `menu` (`menu_id`, `tenMenu`, `vitri`, `capmenu`, `loaimenu`, `link`, `trangthaiAH`) VALUES
+(1, 'Trang Chủ', 1, 1, 0, 'index.php', 'Hiển thị'),
+(2, 'Giới Thiệu', 2, 1, 0, 'blog.php', 'Hiển thị'),
+(3, 'Việc Làm', 3, 1, 0, 'job.php', 'Hiển thị'),
+(4, 'Tuyển Dụng', 4, 1, 2, 'tuyendung', 'Hiển thị'),
+(5, 'Ứng Viên', 5, 1, 1, 'ungvien', 'Hiển thị'),
+(6, 'Bài Viết', 6, 1, 0, 'blog.php', 'Ẩn'),
+(7, 'test', 7, 1, 0, 'blog.php', 'Ẩn'),
+(9, '', 0, 0, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,7 @@ INSERT INTO `menu` (`menu_id`, `tenMenu`, `vitri`, `capmenu`, `link`, `trangthai
 --
 
 CREATE TABLE `tblcongty` (
-  `cty_id` varchar(10) NOT NULL,
+  `cty_id` int(11) NOT NULL,
   `congty` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
@@ -66,13 +67,13 @@ CREATE TABLE `tblcongty` (
 --
 
 INSERT INTO `tblcongty` (`cty_id`, `congty`) VALUES
-('dvu01', 'Công Ty TNHH TM DV Tổng Hợp Đăng Khoa'),
-('fgc01', 'CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC'),
-('mobi01', 'Chi nhánh viên thông mobilephone miền trung'),
-('myh01', 'Công Ty Cổ Phần Tập Đoàn My House'),
-('sd01', 'Công ty cổ phần Sen Đỏ'),
-('th01', 'Công ty cổ phần sữa TH'),
-('vt01', 'Viettel Store Nghệ An');
+(3, 'CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC'),
+(4, 'Chi nhánh viên thông mobilephone miền trung'),
+(5, 'Công Ty Cổ Phần Tập Đoàn My House'),
+(6, 'Công ty cổ phần Sen Đỏ'),
+(7, 'Công ty cổ phần sữa TH'),
+(8, 'Viettel Store Nghệ An'),
+(11, 'Công Ty TNHH TM DV Tổng Hợp Đăng Khoa');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,12 @@ CREATE TABLE `tbl_apply` (
 --
 
 INSERT INTO `tbl_apply` (`ap_id`, `id_user`, `job_id`, `mess`, `file_cv`, `tg_apply`, `trangthaicv`, `phanhoi`) VALUES
-(1, 'uv01', 16, 'test apply cv', 'uploads/6551b8357a0a8.pdf', '2013-11-23', 'Chờ phê duyệt', '');
+(1, '9', 16, 'test apply cv', 'uploads/6556cc4f2fb88.pdf', '2013-11-23', 'Phê duyệt', 'ban đã trung tuyển'),
+(2, '9', 6, 'tes nha', 'uploads/6552ca3ce8a8b.pdf', '2014-11-23', 'Từ chối', 'ban không đủ điều kiên cảm on bạn đã quan tâm'),
+(3, '10', 16, 'test 2', 'uploads/6551b8357a0a8.pdf', '2017-11-23', 'Phê duyệt', 'ban đã trung tuyển'),
+(4, '9', 18, 'tsst', 'uploads/65641a2a63081.pdf', '2027-11-23', 'Từ chối', 'bạn không đủ điều kiện'),
+(5, '2', 18, 'sdadsad', 'uploads/65641b0950bb5.pdf', '2027-11-23', 'Từ chối', 'bạn không đủ điều kiện'),
+(7, '10', 3, 'test truong phong', 'uploads/65646a02ba094.pdf', '2027-11-23', 'Từ chối', 'test từ chối');
 
 -- --------------------------------------------------------
 
@@ -133,7 +139,7 @@ INSERT INTO `tbl_career` (`id_career`, `tennganh`, `mota`) VALUES
 CREATE TABLE `tbl_job` (
   `job_id` int(11) NOT NULL,
   `id_user` varchar(10) NOT NULL,
-  `cty_id` varchar(10) NOT NULL,
+  `cty_id` int(11) NOT NULL,
   `id_career` int(11) NOT NULL,
   `tencv` varchar(250) NOT NULL,
   `vt_tuyendung` varchar(250) NOT NULL,
@@ -156,14 +162,15 @@ CREATE TABLE `tbl_job` (
 --
 
 INSERT INTO `tbl_job` (`job_id`, `id_user`, `cty_id`, `id_career`, `tencv`, `vt_tuyendung`, `hinhthuc_lv`, `muc_luong`, `hinhanh`, `khuvuc`, `bang_cap`, `do_tuoi`, `kinh_nghiem`, `ngay_dang`, `ngay_het`, `trangthaibai`, `mota_cv`, `mota_cty`) VALUES
-(1, 'fgc01', 'fgc01', 2, 'Junior Graphic Designer (Web)', 'PHP developer', 'full time', '10 triệu - 15 triệu', 'ct1.png', 'Nghệ An', 'Tôt nghiệp đại học', '20 tuổi - 35 tuổi', 'Trên 1 năm', '2023-11-23', '2023-11-22', 'Phê duyệt', 'Analyze consumer buying patterns and predicting future trends based on e-commerce sales big data , Sourcing targeted assortment from existing and new suppliers based on wishlist. Negotiate on supply price to get a competitive price.\r\n\r\n- Review performance indicators (e.g. sales, discount levels, traffic and conversion rate)\r\n\r\n- Write reports and forecast sales levels on a weekly and monthly basis for owning categories', 'Công ty Cổ phần Giải pháp công nghệ FGC (FGC Techlution) là Công ty hoạt động trong lĩnh vực tư vấn và cung cấp các giải pháp về hệ thống thông tin, quản trị dữ liệu và thương mại điện tử; Tư vấn, thiết kế website cho các tổ chức, doanh nghiệp và cá nhân trong và ngoài nước. '),
-(2, 'myh01', 'myh01', 3, 'Nhân viên quản lý khách sạn', 'quản lý khách sạn', 'full time', '15 triệu - 20 triệu', 'ct3.png', 'Hà Nội', 'Tôt nghiệp đại học', '20 tuổi - 35 tuổi', 'Trên 3 năm', '2023-10-29', '2023-11-15', 'Phê duyệt', 'Đón tiếp, hướng dẫn Cư dân/Khách hàng sử dụng dịch vụ tại các khu vực tiện ích, Thực hiện thu tiền, thả két, lập báo cáo và kiểm soát doanh thu theo đúng quy trình, quy định và hướng dẫn.Hàng ngày/định kỳ tiến hành kiểm kê, kiểm soát các trang thiết bị công cụ dụng cụ, vật tư... theo quy định tại khu vực phụ trách đảm bảo tiêu chuẩn dịch vụ. Hàng ngày tiến hành kiểm tra, giám sát về chất lượng dịch vụ của kỹ thuật/Housekeeping, công ty bảo vệ tại các khu vực tiện ích', 'Vinhomes cung cấp đến khách hàng một tiêu chuẩn sống đẳng cấp vượt trội mới, đây là sự kết hợp hoàn chỉnh giữa bất động sản nhà ở và hệ thống dịch vụ tiêu chuẩn cao tại những khu đô thị quy mô hàng đầu Việt Nam mang đẳng cấp quốc tế do Vingroup đầu tư.'),
-(3, 'dvu01', 'dvu01', 6, 'Trưởng phòng kinh doanh', 'Nhân viên kế toán', 'full time', '10 triệu - 15 triệu', 'ct5.png', 'TP. Hồ Chí Minh', 'Tốt nghiệp đại học', '20 tuổi - 35 tuổi', ' 2 năm kinh nghiệm', '2023-11-19', '2023-11-21', 'Phê duyệt', 'Quản lý kho hàng. Quản lý xuất hàng, nhập hàng\r\nKiểm tra chất lượng hàng trước khi nhập kho\r\nCác công việc khác theo yêu cầu, có liên quan', 'Công Ty CP Xuất Nhập Khẩu Sản Phẩm Truyền Thống Việt Nam được thành lập vào tháng 1/2018 là một công ty chuyên về lĩnh vực xuất nhập khẩu hàng thủ công mỹ nghệ đi Nhật, Mỹ, Anh, Pháp...Với các loại sản phẩm phong phú, đa dạng, phân khúc khách hàng rộng lớn nên công ty đang trên đà phát triển.Cùng chế độ đãi ngộ tốt, môi trường làm việc chuyên nghiệp và hiện đang có hàng ngàn cơ hội việc làm hấp dẫn để các bạn trẻ thỏa sức, hãy nộp đơn ngay để có công việc tốt nhé!'),
-(4, 'dvu01', 'dvu01', 6, 'Nhân viên kế toán', 'Nhân viên kế toán', 'Remote', '5 triệu - 10 triệu', 'ct5.png', 'Đà Nẵng', 'Tôt nghiệp đại học', '20 tuổi - 35 tuổi', ' 1 năm kinh nghiệm', '2023-11-06', '2023-11-10', 'Phê duyệt', 'Quản lý kho hàng. Quản lý xuất hàng, nhập hàng Kiểm tra chất lượng hàng trước khi nhập kho Các công việc khác theo yêu cầu, có liên quan', 'Công Ty CP Xuất Nhập Khẩu Sản Phẩm Truyền Thống Việt Nam được thành lập vào tháng 1/2018 là một công ty chuyên về lĩnh vực xuất nhập khẩu hàng thủ công mỹ nghệ đi Nhật, Mỹ, Anh, Pháp...Với các loại sản phẩm phong phú, đa dạng, phân khúc khách hàng rộng lớn nên công ty đang trên đà phát triển.Cùng chế độ đãi ngộ tốt, môi trường làm việc chuyên nghiệp và hiện đang có hàng ngàn cơ hội việc làm hấp dẫn để các bạn'),
-(6, 'vt01', 'vt01', 4, 'Quản lý của hàng viettel store', 'nhan viên bán hàng', 'full time', '10 triêu - 15 triệu', 'ct2.jpg', 'Nghệ An', 'Tôt nghiệp cao đẳng', '20 tuổi - 35 tuổi', ' 1 năm kinh nghiệm', '2023-10-29', '2023-11-10', 'Phê duyệt', 'Giới thiệu về sản phẩm và thương hiệu của Công ty. Tìm kiếm khách hàng mới, chăm sóc khách hàng cũ do Công ty giao Tư vấn sản phẩm, giải đáp các vấn đề về chất lượng, giá cả dịch vụ cho khách hàng.Tiếp nhận thông tin, yêu cầu của khách hàng.Làm đầu mối tiếp nhận thông tin và phối hợp để giải quyết các vấn đề phát sinh liên quan đến nội dung hợp đồng.Theo dõi, kiểm tra tiến độ giao hàng.', 'Công ty TNHH Nhà nước Một thành viên Thương mại và Xuất nhập khẩu Viettel. Đăng ký doanh nghiệp số 0104831030, do Sở Kế hoạch và Đầu tư Hà Nội cấp lần đầu ngày 25/01/2006, thay đổi lần thứ 38 ngày 01/07/2019. Địa chỉ: Số 01, Phố Giang Văn Minh, phường Kim Mã, quận Ba Đình, Thành phố Hà Nội.'),
-(15, 'th01', 'th01', 2, 'Thiết kế phần mềm', 'Nhân viên', 'Thực tập sinh', '15tr - 20tr', 'cty1.png', 'Hồng Lĩnh - Hà Tĩnh', 'đại học', '19 đến 25 ', '3 năm kinh nghiệm', '0000-00-00', '2023-12-07', 'Chờ phê duyệt', 'Giới thiệu về sản phẩm và thương hiệu của Công ty. Tìm kiếm khách hàng mới, chăm sóc khách hàng cũ do Công ty giao Tư vấn sản phẩm, giải đáp các vấn đề về chất lượng, giá cả dịch vụ cho khách hàng.Tiếp nhận thông tin, yêu cầu của khách hàng.Làm đầu mối tiếp nhận thông tin và phối hợp để giải quyết các vấn đề phát sinh liên quan đến nội dung hợp đồng.Theo dõi, kiểm tra tiến độ giao hàng.', ''),
-(16, 'dvu01', 'dvu01', 6, 'Giám đốc ngân hàng', 'Giám đốc', 'full time', '15tr - 20tr', 'cty1.png', 'Hồng Lĩnh - Hà Tĩnh', 'đại học', '24 đến 30', '4 năm kinh nghiệm', '2023-11-01', '2023-12-07', 'Phê duyệt', 'Công ty Cổ phần Giải pháp công nghệ FGC (FGC Techlution) là Công ty hoạt động trong lĩnh vực tư vấn và cung cấp các giải pháp về hệ thống thông tin, quản trị dữ liệu và thương mại điện tử; Tư vấn, thiết kế website cho các tổ chức, doanh nghiệp và cá nhân trong và ngoài nước. ', ''),
-(18, 'fgc01', 'fgc01', 2, 'front-end developer', 'Nhân viên', 'Remote', '10 triệu - 15 triệu', 'FGC.png', 'Nghệ an', 'đại học', '25 - 30', '1 năm kinh nghiệm', '0000-00-00', '2023-11-15', 'Chờ phê duyệt', 'tét', '');
+(1, '3', 3, 2, 'Junior Graphic Designer (Web)', 'PHP developer', 'full time', '10 triệu - 15 triệu', 'ct1.png', 'Nghệ An', 'Tôt nghiệp đại học', '20 tuổi - 35 tuổi', 'Trên 1 năm', '2023-11-23', '2023-11-22', 'Phê duyệt', 'Analyze consumer buying patterns and predicting future trends based on e-commerce sales big data , Sourcing targeted assortment from existing and new suppliers based on wishlist. Negotiate on supply price to get a competitive price.\r\n\r\n- Review performance indicators (e.g. sales, discount levels, traffic and conversion rate)\r\n\r\n- Write reports and forecast sales levels on a weekly and monthly basis for owning categories', 'Công ty Cổ phần Giải pháp công nghệ FGC (FGC Techlution) là Công ty hoạt động trong lĩnh vực tư vấn và cung cấp các giải pháp về hệ thống thông tin, quản trị dữ liệu và thương mại điện tử; Tư vấn, thiết kế website cho các tổ chức, doanh nghiệp và cá nhân trong và ngoài nước. '),
+(2, '5', 5, 3, 'Nhân viên quản lý khách sạn', 'quản lý khách sạn', 'full time', '15 triệu - 20 triệu', 'ct3.png', 'Hà Nội', 'Tôt nghiệp đại học', '20 tuổi - 35 tuổi', 'Trên 3 năm', '2023-10-29', '2023-11-15', 'Phê duyệt', 'Đón tiếp, hướng dẫn Cư dân/Khách hàng sử dụng dịch vụ tại các khu vực tiện ích, Thực hiện thu tiền, thả két, lập báo cáo và kiểm soát doanh thu theo đúng quy trình, quy định và hướng dẫn.Hàng ngày/định kỳ tiến hành kiểm kê, kiểm soát các trang thiết bị công cụ dụng cụ, vật tư... theo quy định tại khu vực phụ trách đảm bảo tiêu chuẩn dịch vụ. Hàng ngày tiến hành kiểm tra, giám sát về chất lượng dịch vụ của kỹ thuật/Housekeeping, công ty bảo vệ tại các khu vực tiện ích', 'Vinhomes cung cấp đến khách hàng một tiêu chuẩn sống đẳng cấp vượt trội mới, đây là sự kết hợp hoàn chỉnh giữa bất động sản nhà ở và hệ thống dịch vụ tiêu chuẩn cao tại những khu đô thị quy mô hàng đầu Việt Nam mang đẳng cấp quốc tế do Vingroup đầu tư.'),
+(3, '11', 11, 6, 'Trưởng phòng kinh doanh', 'Nhân viên kế toán', 'full time', '10 triệu - 15 triệu', 'ct5.png', 'TP. Hồ Chí Minh', 'Tốt nghiệp đại học', '20 tuổi - 35 tuổi', ' 2 năm kinh nghiệm', '2023-11-19', '2023-11-21', 'Phê duyệt', 'Quản lý kho hàng. Quản lý xuất hàng, nhập hàng\r\nKiểm tra chất lượng hàng trước khi nhập kho\r\nCác công việc khác theo yêu cầu, có liên quan', 'Công Ty CP Xuất Nhập Khẩu Sản Phẩm Truyền Thống Việt Nam được thành lập vào tháng 1/2018 là một công ty chuyên về lĩnh vực xuất nhập khẩu hàng thủ công mỹ nghệ đi Nhật, Mỹ, Anh, Pháp...Với các loại sản phẩm phong phú, đa dạng, phân khúc khách hàng rộng lớn nên công ty đang trên đà phát triển.Cùng chế độ đãi ngộ tốt, môi trường làm việc chuyên nghiệp và hiện đang có hàng ngàn cơ hội việc làm hấp dẫn để các bạn trẻ thỏa sức, hãy nộp đơn ngay để có công việc tốt nhé!'),
+(4, '11', 11, 6, 'Nhân viên kế toán', 'Nhân viên kế toán', 'Remote', '5 triệu - 10 triệu', 'ct5.png', 'Đà Nẵng', 'Tôt nghiệp đại học', '20 tuổi - 35 tuổi', ' 1 năm kinh nghiệm', '2023-11-06', '2023-11-10', 'Phê duyệt', 'Quản lý kho hàng. Quản lý xuất hàng, nhập hàng Kiểm tra chất lượng hàng trước khi nhập kho Các công việc khác theo yêu cầu, có liên quan', 'Công Ty CP Xuất Nhập Khẩu Sản Phẩm Truyền Thống Việt Nam được thành lập vào tháng 1/2018 là một công ty chuyên về lĩnh vực xuất nhập khẩu hàng thủ công mỹ nghệ đi Nhật, Mỹ, Anh, Pháp...Với các loại sản phẩm phong phú, đa dạng, phân khúc khách hàng rộng lớn nên công ty đang trên đà phát triển.Cùng chế độ đãi ngộ tốt, môi trường làm việc chuyên nghiệp và hiện đang có hàng ngàn cơ hội việc làm hấp dẫn để các bạn'),
+(6, '8', 8, 4, 'Quản lý của hàng viettel store', 'nhan viên bán hàng', 'full time', '10 triêu - 15 triệu', 'ct2.jpg', 'Nghệ An', 'Tôt nghiệp cao đẳng', '20 tuổi - 35 tuổi', ' 1 năm kinh nghiệm', '2023-10-29', '2023-11-10', 'Phê duyệt', 'Giới thiệu về sản phẩm và thương hiệu của Công ty. Tìm kiếm khách hàng mới, chăm sóc khách hàng cũ do Công ty giao Tư vấn sản phẩm, giải đáp các vấn đề về chất lượng, giá cả dịch vụ cho khách hàng.Tiếp nhận thông tin, yêu cầu của khách hàng.Làm đầu mối tiếp nhận thông tin và phối hợp để giải quyết các vấn đề phát sinh liên quan đến nội dung hợp đồng.Theo dõi, kiểm tra tiến độ giao hàng.', 'Công ty TNHH Nhà nước Một thành viên Thương mại và Xuất nhập khẩu Viettel. Đăng ký doanh nghiệp số 0104831030, do Sở Kế hoạch và Đầu tư Hà Nội cấp lần đầu ngày 25/01/2006, thay đổi lần thứ 38 ngày 01/07/2019. Địa chỉ: Số 01, Phố Giang Văn Minh, phường Kim Mã, quận Ba Đình, Thành phố Hà Nội.'),
+(15, '7', 7, 2, 'Thiết kế phần mềm', 'Nhân viên', 'Thực tập sinh', '15tr - 20tr', 'cty1.png', 'Hồng Lĩnh - Hà Tĩnh', 'đại học', '19 đến 25 ', '3 năm kinh nghiệm', '0000-00-00', '2023-12-07', 'Chờ phê duyệt', 'Giới thiệu về sản phẩm và thương hiệu của Công ty. Tìm kiếm khách hàng mới, chăm sóc khách hàng cũ do Công ty giao Tư vấn sản phẩm, giải đáp các vấn đề về chất lượng, giá cả dịch vụ cho khách hàng.Tiếp nhận thông tin, yêu cầu của khách hàng.Làm đầu mối tiếp nhận thông tin và phối hợp để giải quyết các vấn đề phát sinh liên quan đến nội dung hợp đồng.Theo dõi, kiểm tra tiến độ giao hàng.', ''),
+(16, '11', 11, 6, 'Giám đốc ngân hàng', 'Giám đốc', 'full time', '15tr - 20tr', 'cty1.png', 'Hồng Lĩnh - Hà Tĩnh', 'đại học', '24 đến 30', '4 năm kinh nghiệm', '2023-11-01', '2023-12-07', 'Phê duyệt', 'Công ty Cổ phần Giải pháp công nghệ FGC (FGC Techlution) là Công ty hoạt động trong lĩnh vực tư vấn và cung cấp các giải pháp về hệ thống thông tin, quản trị dữ liệu và thương mại điện tử; Tư vấn, thiết kế website cho các tổ chức, doanh nghiệp và cá nhân trong và ngoài nước. ', ''),
+(18, '3', 3, 2, 'front-end developer', 'Nhân viên', 'Remote', '10 triệu - 15 triệu', 'FGC.png', 'Nghệ an', 'đại học', '25 - 30', '1 năm kinh nghiệm', '2023-11-27', '2023-11-15', 'Phê duyệt', 'tét', ''),
+(20, '11', 11, 6, 'tess', 'Nhân viên', 'Part time', '10 triệu - 15 triệu', 'cty1.png', 'Nghệ an', 'đại học', '25 - 30', '1 năm kinh nghiệm', '0000-00-00', '2023-11-30', 'Chờ phê duyệt', 'test bai', '');
 
 -- --------------------------------------------------------
 
@@ -201,6 +208,38 @@ INSERT INTO `tbl_post` (`baiviet_id`, `tieude`, `tomtatbv`, `noidung`, `hinhanh`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_taikhoan`
+--
+
+CREATE TABLE `tbl_taikhoan` (
+  `id_tk` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tentk` varchar(50) NOT NULL,
+  `pass` varchar(50) NOT NULL,
+  `loaitk` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `tbl_taikhoan`
+--
+
+INSERT INTO `tbl_taikhoan` (`id_tk`, `id_user`, `tentk`, `pass`, `loaitk`) VALUES
+(1, 1, 'admin', 'admin', 0),
+(2, 2, 'root', '123456', 2),
+(3, 3, 'CtyFGC', '123456', 1),
+(4, 4, 'mobiphone', '123456', 1),
+(5, 5, 'myhouse', '123456', 1),
+(6, 6, 'sendo', '123456', 1),
+(7, 7, 'ctyTH', '123456', 1),
+(8, 8, 'viettel', '123456', 1),
+(9, 9, 'tuan2002', '123456', 2),
+(10, 10, 'longka', '123456', 2),
+(11, 11, 'ctykhoadang', '123456', 1),
+(13, 1, 'admin2', '123456', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_user`
 --
 
@@ -210,6 +249,7 @@ CREATE TABLE `tbl_user` (
   `phone` varchar(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `diachi` varchar(50) NOT NULL,
+  `gtinh` varchar(10) NOT NULL,
   `tentk` varchar(50) NOT NULL,
   `pass` varchar(50) NOT NULL,
   `loaitk` int(11) NOT NULL
@@ -219,16 +259,51 @@ CREATE TABLE `tbl_user` (
 -- Dumping data for table `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`id_user`, `user_name`, `phone`, `email`, `diachi`, `tentk`, `pass`, `loaitk`) VALUES
-('1', 'Admin', '01234567899', 'Timjobxyz@gmail.com', 'Tp Vinh - Nghệ An', 'admin', 'admin', 0),
-('dvu01', 'Công Ty TNHH TM DV Tổng Hợp Đăng Khoa', '0888888888', 'ĐangKhoa@gmail.com', 'Tp Vinh - Nghệ An', 'admin5', '123456', 1),
-('fgc01', 'CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC', '0326985741', 'congnghefgc@gmail.com', 'Tp Vinh - Nghệ An', 'admin4', '123456', 1),
-('mobi01', 'Chi nhánh viên thông mobilephone miền trung', '0888888888', 'mobilephone@gmail.com', 'Tp Vinh - Nghệ An', 'admin', '123456', 1),
-('myh01', 'Công Ty Cổ Phần Tập Đoàn My House', '0888888888', 'MyHouse@gmail.com', 'Cầu Giấy - Hà Nội', 'admin2', '123', 1),
-('sd01', 'Công ty cổ phần Sen Đỏ', '0321654987', 'Sendo@gmail.com', 'TP.HCM, Quận 4', 'admin3', '123456', 1),
-('th01', 'Công ty cổ phần sữa TH', '0326985741', 'THCTCP@gmail.com', 'Nghĩa Đàn - Nghệ An', 'admin5', '123456', 1),
-('uv01', 'Đoan Tuân', '0888888888', 'Tuandoan@gmail.com', 'Tp Vinh - Nghệ An', 'tuan2002', 'tuan1788', 2),
-('vt01', 'Viettel Store Nghệ An', '0326985741', 'vietthel@gmail.com', 'Tp Vinh - Nghệ An', 'admin4', '123456', 1);
+INSERT INTO `tbl_user` (`id_user`, `user_name`, `phone`, `email`, `diachi`, `gtinh`, `tentk`, `pass`, `loaitk`) VALUES
+('1', 'Admin1', '01234567899', 'Timjobxyz@gmail.com', 'Tp Vinh - Nghệ An', '', 'admin', 'admin', 0),
+('dvu01', 'Công Ty TNHH TM DV Tổng Hợp Đăng Khoa', '0888888888', 'ĐangKhoa@gmail.com', 'Tp Vinh - Nghệ An', '', 'admin5', '123456', 1),
+('fgc01', 'CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC', '0326985741', 'congnghefgc@gmail.com', 'Tp Vinh - Nghệ An', '', 'admin4', '123456', 1),
+('mobi01', 'Chi nhánh viên thông mobilephone miền trung', '0888888888', 'mobilephone@gmail.com', 'Tp Vinh - Nghệ An', '', 'admin', '123456', 1),
+('myh01', 'Công Ty Cổ Phần Tập Đoàn My House', '0888888888', 'MyHouse@gmail.com', 'Cầu Giấy - Hà Nội', '', 'admin2', '123', 1),
+('sd01', 'Công ty cổ phần Sen Đỏ', '0321654987', 'Sendo@gmail.com', 'TP.HCM, Quận 4', '', 'admin3', '123456', 1),
+('th01', 'Công ty cổ phần sữa TH', '0326985741', 'THCTCP@gmail.com', 'Nghĩa Đàn - Nghệ An', '', 'admin5', '123456', 1),
+('uv01', 'Đoan Tuân', '0888888888', 'Tuandoan@gmail.com', 'Tp Vinh - Nghệ An', 'Nam', 'tuan2002', 'tuan1788', 2),
+('uv02', 'Viết Long', '0321654987', 'long@gmail.com', 'Quỳ Hợp - Nghệ An', 'Nam', 'long', '123', 2),
+('vt01', 'Viettel Store Nghệ An', '0326985741', 'vietthel@gmail.com', 'Tp Vinh - Nghệ An', '', 'admin4', '123456', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user2`
+--
+
+CREATE TABLE `tbl_user2` (
+  `id_user` int(11) NOT NULL,
+  `user_name` varchar(70) NOT NULL,
+  `phone` varchar(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `diachi` varchar(50) NOT NULL,
+  `gtinh` varchar(10) NOT NULL,
+  `sothich` varchar(200) NOT NULL,
+  `id_tk` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `tbl_user2`
+--
+
+INSERT INTO `tbl_user2` (`id_user`, `user_name`, `phone`, `email`, `diachi`, `gtinh`, `sothich`, `id_tk`) VALUES
+(1, 'Admin', '01234567899', 'Timjobxyz@gmail.com', 'Tp Vinh - Nghệ An', '', '', 1),
+(2, 'root', '', '', '', '', '', 2),
+(3, 'CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC', '0321654987', 'congnghefgc@gmail.com', 'Tp Vinh - Nghệ An', '', '', 3),
+(4, 'Chi nhánh viên thông mobilephone miền trung', '0326985741', 'mobilephone@gmail.com', 'Nghĩa Đàn - Nghệ An', '', '', 4),
+(5, 'Công Ty Cổ Phần Tập Đoàn My House', '0888888888', 'MyHouse@gmail.com', 'Cầu Giấy - Hà Nội', '', '', 5),
+(6, 'Công ty cổ phần Sen Đỏ', '0326985741', 'Sendo@gmail.com', 'Tp Vinh - Nghệ An', '', '', 6),
+(7, 'Công ty cổ phần sữa TH', '0321654987', 'THCTCP@gmail.com', 'Tp Vinh - Nghệ An', '', '', 7),
+(8, 'Viettel Store Nghệ An', '0326985741', 'vietthel@gmail.com', 'Tp Vinh - Nghệ An', '', '', 8),
+(9, 'Đoàn Ngọc Tuấn', '01234567899', 'Tuandoan@gmail.com', 'Tp Vinh - Nghệ An', 'Nam', 'Xem phim, Chơi games', 9),
+(10, 'Đinh Viết Long', '0326985741', 'long@gmail.com.vn', 'Quỳ Hợp - Nghệ An', 'Nam', 'Xem phim, Chơi games', 10),
+(11, 'Công Ty TNHH TM DV Tổng Hợp Đăng Khoa', '01234567899', 'ĐangKhoa@gmail.com', 'Tp Vinh - Nghệ An', '', '', 11);
 
 --
 -- Indexes for dumped tables
@@ -271,9 +346,21 @@ ALTER TABLE `tbl_post`
   ADD PRIMARY KEY (`baiviet_id`);
 
 --
+-- Indexes for table `tbl_taikhoan`
+--
+ALTER TABLE `tbl_taikhoan`
+  ADD PRIMARY KEY (`id_tk`);
+
+--
 -- Indexes for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- Indexes for table `tbl_user2`
+--
+ALTER TABLE `tbl_user2`
   ADD PRIMARY KEY (`id_user`);
 
 --
@@ -287,10 +374,16 @@ ALTER TABLE `menu`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `tblcongty`
+--
+ALTER TABLE `tblcongty`
+  MODIFY `cty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `tbl_apply`
 --
 ALTER TABLE `tbl_apply`
-  MODIFY `ap_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ap_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_career`
@@ -302,13 +395,25 @@ ALTER TABLE `tbl_career`
 -- AUTO_INCREMENT for table `tbl_job`
 --
 ALTER TABLE `tbl_job`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tbl_post`
 --
 ALTER TABLE `tbl_post`
   MODIFY `baiviet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tbl_taikhoan`
+--
+ALTER TABLE `tbl_taikhoan`
+  MODIFY `id_tk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `tbl_user2`
+--
+ALTER TABLE `tbl_user2`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

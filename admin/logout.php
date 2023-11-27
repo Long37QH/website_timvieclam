@@ -6,5 +6,5 @@ session_start();
     }
     //echo "shshsh";
     // sau khi logout chuyen ve trang login
-    header('location: login.php');
+    header('location: ../index.php');
 ?>

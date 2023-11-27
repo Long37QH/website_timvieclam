@@ -8,9 +8,9 @@ if (!isset($_SESSION['tkadmin'])) {
 }
 include('../model/config.php');
 
-$sua_sql = "SELECT * FROM tbl_user WHERE id_user = '$id_user'";
+$sql = "SELECT * FROM tbl_taikhoan WHERE id_tk = '$id_user'";
 
-$result = mysqli_query($conn, $sua_sql);
+$result = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_assoc($result);
 
@@ -32,6 +32,11 @@ $row = mysqli_fetch_assoc($result);
     <link rel="stylesheet" href="assets/extra-libs/multicheck/multicheck.css" />
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <link href="dist/css/style.min.css" rel="stylesheet" />
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -66,7 +71,7 @@ $row = mysqli_fetch_assoc($result);
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-end">
-                        <h3 style="line-height: 62px;">Chào <?php echo $row['user_name']; ?></h3>
+                        <h3 style="line-height: 62px;">Chào <?php echo $row['tentk']; ?></h3>
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
@@ -192,11 +197,11 @@ $row = mysqli_fetch_assoc($result);
                                     <a href="menu_ds.php" class="sidebar-link"><i class="mdi mdi-note-outline">
                                         </i><span class="hide-menu"> Quản lý memu</span></a>
                                 </li>
-                                <li class="sidebar-item">
+                                <!-- <li class="sidebar-item">
                                     <a href="#" class="sidebar-link"><i class="mdi mdi-note-plus"></i>
                                         <span class="hide-menu"> Quản lý banner </span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="sidebar-item">
                                     <a href="baiviet_ds.php" class="sidebar-link"><i class="mdi mdi-note-plus"></i>
                                         <span class="hide-menu"> Quản lý bài viết </span>
@@ -210,11 +215,6 @@ $row = mysqli_fetch_assoc($result);
                             </a>
                         </li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-relative-scale"></i>
-                                <span class="hide-menu">Thuộc tính công việc</span>
-                            </a>
-                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i>
                                 <span class="hide-menu">Quản lý bài tuyển dụng </span>
@@ -238,16 +238,17 @@ $row = mysqli_fetch_assoc($result);
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-pencil"></i>
-                                <span class="hide-menu">Quản lý ứng viên</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-pencil"></i>
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tuyendung_ds.php" aria-expanded="false"><i class="mdi mdi-relative-scale"></i>
                                 <span class="hide-menu">Quản lý nhà tuyển dụng</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <!-- <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-pencil"></i>
+                                <span class="hide-menu">Quản lý ứng viên</span>
+                            </a>
+                        </li> -->
+                        
+                        <!-- <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i>
                                 <span class="hide-menu">Addons </span>
                             </a>
@@ -278,23 +279,11 @@ $row = mysqli_fetch_assoc($result);
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i>
-                                <span class="hide-menu">Authentication </span>
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="taikhoan_ds.php" aria-expanded="false"><i class="mdi mdi-account-key"></i>
+                                <span class="hide-menu">Quản lý tài khoản</span>
                             </a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item">
-                                    <a href="authentication-login.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i>
-                                        <span class="hide-menu"> Login </span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="authentication-register.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i>
-                                        <span class="hide-menu"> Register </span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </nav>

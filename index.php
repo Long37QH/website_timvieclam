@@ -1,22 +1,8 @@
 <?php
 include("header.php");
+
 ?>
 <!-- body -->
-<style>
-    .apply:hover a {
-        background-color: #f38121;
-        color: aliceblue;
-    }
-
-    .fas:hover {
-        color: white;
-    }
-    .apply a{
-      color: #f38121;
-      font-weight: bold;
-    }
-</style>
-</style>
 
 <div class="banner-ntd">
   <div class="container">
@@ -172,7 +158,7 @@ include("header.php");
       </div>
       <div class="col-2 mt-3 px-1">
         <!-- <span class="ctn-icon text-white pl-2 search-job--input"><i class="fa fa-search" aria-hidden="true"></i></span> -->
-        <button type="submit" style="background-color:#f38121 ;" class="form-control search-job__input-submit btn btn-block btn-warning">Tìm
+        <button type="search" style="background-color:#f38121 ;" class="form-control search-job__input-submit btn btn-block btn-warning">Tìm
           Kiếm</button>
       </div>
     </div>
@@ -245,9 +231,13 @@ include("header.php");
     <h3>Việc làm đang tuyển</h3>
   </div>
   <?php
+  $page = isset($_GET['page']) ? $_GET['page'] : 1;
+  $limit = 6;
+  $start = ($page - 1) * $limit;
+
   $list_job = "SELECT job.job_id, u.user_name,job.tencv,job.hinhanh,job.khuvuc,job.muc_luong,job.hinhthuc_lv,job.ngay_het  FROM tbl_job as job
-                    INNER JOIN tbl_user as u ON u.id_user = job.id_user
-                    WHERE trangthaibai = 'Phê duyệt' ORDER BY job_id  DESC LIMIT 6";
+               INNER JOIN tbl_user2 as u ON u.id_user = job.id_user
+               WHERE trangthaibai = 'Phê duyệt' ORDER BY job_id DESC LIMIT $start, $limit";
   $re = mysqli_query($conn, $list_job);
   $data = [];
 
@@ -263,6 +253,11 @@ include("header.php");
       'ngay_het' => $row['ngay_het'],
     );
   }
+
+  $count_jobs = "SELECT COUNT(*) AS total FROM tbl_job WHERE trangthaibai = 'Phê duyệt'";
+  $result = mysqli_query($conn, $count_jobs);
+  $row = mysqli_fetch_assoc($result);
+  $total_pages = ceil($row["total"] / $limit);
   ?>
   <div class="job-list d-flex">
     <?php foreach ($data as $row) :
@@ -296,12 +291,21 @@ include("header.php");
           </div>
           <button class="btn_job"><span><?php echo $row['hinhthuc_lv']; ?></button>
           <div class="apply">
-            <a style="border:1px solid #666666;border-radius: 20px; float:right; padding: 2px 12px 2px 12px;" href="<?php echo $link; ?>"><i class="fas fa-location-arrow"></i>Apply</a>
+            <a style="border:1px solid #666666;border-radius: 20px; float:right; padding: 2px 12px 2px 12px;" href="<?php echo $link; ?>"><i class="fas fa-location-arrow"> Apply</i></a>
           </div>
         </div>
       </div>
     <?php endforeach; ?>
-
+  </div>
+  <!-- nút phân trang -->
+  <div class="pagination">
+    <a href="#" class="previous">&laquo;</a>
+    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+      <a href="?page=<?php echo $i; ?>" <?php if ($i == $page) echo 'class="active"'; ?>>
+        <?php echo $i; ?>
+      </a>
+    <?php endfor; ?>
+    <a href="#" class="next">&raquo;</a>
   </div>
 </div>
 

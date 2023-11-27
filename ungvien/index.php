@@ -1,5 +1,5 @@
-<?php 
-include("header.php");	
+<?php
+include("header.php");
 ?>
 <div class="main-container">
 	<div class="pd-ltr-20">
@@ -18,12 +18,12 @@ include("header.php");
 		<div class="card-box mb-30">
 			<h2 class="h4 pd-20 text-blue">Thống kê cv ứng tuyển</h2>
 			<?php
-			$sql = 'SELECT tbl_job.job_id,tbl_job.tencv,tbl_job.vt_tuyendung,tbl_job.muc_luong,tbl_job.ngay_het,tblcongty.congty,tbl_apply.trangthaicv,tbl_apply.file_cv
+			$sql = 'SELECT tbl_apply.ap_id,tbl_job.job_id,tbl_job.tencv,tbl_job.vt_tuyendung,tbl_job.muc_luong,tbl_job.ngay_het,tblcongty.congty,tbl_apply.trangthaicv,tbl_apply.file_cv
 					FROM tbl_apply 
 					INNER JOIN tbl_job ON tbl_job.job_id = tbl_apply.job_id
 					INNER JOIN tblcongty ON tblcongty.cty_id = tbl_job.cty_id
-					WHERE tbl_apply.id_user ='.'"'. $id_user.'"';
-		
+					WHERE tbl_apply.id_user =' . '"' . $id_tkuv . '"';
+
 			$re = mysqli_query($conn, $sql);
 
 			$data = [];
@@ -32,7 +32,8 @@ include("header.php");
 			while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
 				$data[] = array(
 					'TT' => $TT,
-					"job_id" => $row["job_id"],
+					'ap_id' => $row["ap_id"],
+					'job_id' => $row["job_id"],
 					'tencv' => $row['tencv'],
 					'congty' => $row['congty'],
 					'vt_tuyendung' => $row['vt_tuyendung'],
@@ -64,7 +65,7 @@ include("header.php");
 						$encoded_id = base64_encode($job_id);
 						// Tạo liên kết sử dụng ID đã mã hóa
 						$link = "job-profile-detail.php?sid=" . urlencode($encoded_id);
-					 ?>
+					?>
 						<tr>
 							<td class="table-plus"><?php echo $row['TT']; ?></td>
 							<td><?php echo $row['tencv']; ?></td>
@@ -80,7 +81,8 @@ include("header.php");
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="../<?php echo $link;?>"><i class="dw dw-eye"></i> View</a>
+										<a class="dropdown-item" href="../<?php echo $link; ?>"><i class="dw dw-eye"></i> View</a>
+										<a onclick="return confirm('bạn có muốn xoá không ?');" class="dropdown-item" href="xoa_cv.php?sid=<?php echo $row['ap_id']; ?>"><i class="dw dw-delete-3"></i> Xoá</a>
 									</div>
 								</div>
 							</td>

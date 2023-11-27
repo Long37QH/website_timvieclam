@@ -37,7 +37,9 @@ include('header.php');
                         <div class="table-responsive">
                             <?php
                             include('../model/config.php');
-                            $list_ds = "SELECT job_id,user_name, tencv,hinhthuc_lv,hinhanh,khuvuc,trangthaibai FROM tbl_job j INNER JOIN tbl_user u ON j.id_user = u.id_user WHERE trangthaibai = 'Phê duyệt';";
+                            $list_ds = "SELECT job_id,user_name, tencv,hinhthuc_lv,hinhanh,khuvuc,trangthaibai 
+                            FROM tbl_job j INNER JOIN tbl_user2 u ON j.id_user = u.id_user 
+                            WHERE trangthaibai = 'Phê duyệt';";
 
                             $re = mysqli_query($conn, $list_ds);
 

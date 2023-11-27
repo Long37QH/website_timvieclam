@@ -1,0 +1,41 @@
+
+  .apply:hover a {
+    background-color: #f38121;
+    color: white;
+  }
+
+  .apply a {
+    color: #f38121;
+    font-weight: bold;
+  }
+
+  .fas:hover {
+    color: white;
+  }
+
+  .pagination {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    /* Điều chỉnh để nút phân trang sang bên phải */
+    margin-right: 40px;
+  }
+
+  .pagination a {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 5px;
+    /* Để tạo khoảng cách giữa các nút */
+  }
+
+  .pagination a.active,
+  .pagination a:hover {
+    background-color: #f38121;
+    color: white;
+    border: 1px solid #f38121;
+  }

@@ -1,18 +1,19 @@
 <?php
 include("header.php");
-$proFile = "SELECT * FROM tbl_user WHERE id_user = 'uv01'";
+$proFile = 'SELECT * FROM tbl_user2 WHERE id_user = ' . '"' . $id_tkuv . '"';
 $re = mysqli_query($conn, $proFile);
 $data = [];
-
-while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
-	$data[] = array(
-		'user_name' => $row['user_name'],
-		'phone' => $row['phone'],
-		'email' => $row['email'],
-		'diachi' => $row['diachi'],
-		'gtinh' => $row['gtinh'],
-	);
-}
+$rowp = mysqli_fetch_array($re, MYSQLI_ASSOC);
+// while ($rowp = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
+// 	$data[] = array(
+// 		'user_name' => $rowp['user_name'],
+// 		'phone' => $rowp['phone'],
+// 		'email' => $rowp['email'],
+// 		'diachi' => $rowp['diachi'],
+// 		'gtinh' => $rowp['gtinh'],
+// 		'sothich' => $rowp['sothich'],
+// 	);
+// }
 
 ?>
 
@@ -42,54 +43,54 @@ while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
 							<img src="vendors/images/photo1.jpg" alt="" class="avatar-photo">
 
 						</div>
-						<h5 class="text-center h5 mb-0"> Đoàn ngọc tuấn </h5>
+						<h5 class="text-center h5 mb-0"><?php echo $rowp['user_name']; ?></h5>
 						<p class="text-center text-muted font-14"> PHP Developer</p>
 						<div class="profile-info">
 							<h5 class="mb-20 h5 text-blue">Thông Tin ứng viên</h5>
 						</div>
 						<form action="">
-							<?php foreach ($data as $row) : ?>
-								<div class="row">
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Họ và tên</label>
-											<input type="text" class="form-control" value="<?php echo $row['user_name']; ?>" readonly>
-										</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Số điện thoại</label>
-											<input type="text" class="form-control" value="<?php echo $row['phone']; ?>" readonly>
-										</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Email</label>
-											<input type="text" class="form-control" value="<?php echo $row['email']; ?>" readonly>
-										</div>
+
+							<div class="row">
+								<div class="col-md-4 col-sm-12">
+									<div class="form-group">
+										<label>Họ và tên</label>
+										<input type="text" class="form-control" value="<?php echo $rowp['user_name']; ?>" readonly>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Giới tính</label>
-											<input type="text" class="form-control" value="<?php echo $row['gtinh']; ?>" readonly>
-										</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Địa Chỉ</label>
-											<input type="text" class="form-control" value="<?php echo $row['diachi']; ?>" readonly>
-										</div>
-									</div>
-									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
-											<label>Sở thích</label>
-											<input type="text" class="form-control" value="Xem phim, Chơi games" readonly>
-										</div>
+								<div class="col-md-4 col-sm-12">
+									<div class="form-group">
+										<label>Số điện thoại</label>
+										<input type="text" class="form-control" value="<?php echo $rowp['phone']; ?>" readonly>
 									</div>
 								</div>
-							<?php endforeach;  ?>
+								<div class="col-md-4 col-sm-12">
+									<div class="form-group">
+										<label>Email</label>
+										<input type="text" class="form-control" value="<?php echo $rowp['email']; ?>" readonly>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 col-sm-12">
+									<div class="form-group">
+										<label>Giới tính</label>
+										<input type="text" class="form-control" value="<?php echo $rowp['gtinh']; ?>" readonly>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-12">
+									<div class="form-group">
+										<label>Địa Chỉ</label>
+										<input type="text" class="form-control" value="<?php echo $rowp['diachi']; ?>" readonly>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-12">
+									<div class="form-group">
+										<label>Sở thích</label>
+										<input type="text" class="form-control" value="<?php echo $rowp['sothich']; ?>" readonly>
+									</div>
+								</div>
+							</div>
+
 						</form>
 					</div>
 

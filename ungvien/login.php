@@ -19,7 +19,7 @@ if (isset($_POST["login"])) {
     }
     $role = 2;
     // Truy vấn kiểm tra thông tin đăng nhập
-    $query = "SELECT * FROM tbl_user WHERE tentk='$tkungvien' AND pass='$pass' AND loaitk ='$role'";
+    $query = "SELECT * FROM tbl_taikhoan WHERE tentk='$tkungvien' AND pass='$pass' AND loaitk ='$role'";
     //echo $query;exit;
     $result = mysqli_query($conn, $query);
 
@@ -27,7 +27,7 @@ if (isset($_POST["login"])) {
 
     if (mysqli_num_rows($result) == 1) {
         $_SESSION['tkungvien'] = $tkungvien;
-        $_SESSION['id_user'] = $row['id_user'];
+        $_SESSION['id_tkuv'] = $row['id_tk'];
         header("Location: index.php");
     } else {
         $error["errorLogin"] = "Tài khoản mật khẩu không đúng";

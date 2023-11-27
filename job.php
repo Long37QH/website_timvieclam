@@ -2,15 +2,7 @@
 include("header.php");
 ?>
 <!-- body -->
-<style>
-    .apply:hover a {
-        background-color: #f38121;
-    }
 
-    .fas:hover {
-        color: white;
-    }
-</style>
 
 
 <div class="banner-ntd" style="background-image: url(public/images/banner-job.jpg);">
@@ -239,10 +231,15 @@ include("header.php");
     <div class="list-title">
         <h3>Việc làm đang tuyển</h3>
     </div>
+
     <?php
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $limit = 6;
+    $start = ($page - 1) * $limit;
+
     $list_job = "SELECT job.job_id, u.user_name,job.tencv,job.hinhanh,job.khuvuc,job.muc_luong,job.hinhthuc_lv,job.ngay_het  FROM tbl_job as job
-                    INNER JOIN tbl_user as u ON u.id_user = job.id_user
-                    WHERE trangthaibai = 'Phê duyệt' ORDER BY job_id  DESC LIMIT 6";
+               INNER JOIN tbl_user2 as u ON u.id_user = job.id_user
+               WHERE trangthaibai = 'Phê duyệt' ORDER BY job_id DESC LIMIT $start, $limit";
     $re = mysqli_query($conn, $list_job);
     $data = [];
 
@@ -258,7 +255,12 @@ include("header.php");
             'ngay_het' => $row['ngay_het'],
         );
     }
+    $count_jobs = "SELECT COUNT(*) AS total FROM tbl_job WHERE trangthaibai = 'Phê duyệt'";
+    $result = mysqli_query($conn, $count_jobs);
+    $row = mysqli_fetch_assoc($result);
+    $total_pages = ceil($row["total"] / $limit);
     ?>
+
     <div class="job-list d-flex">
         <?php foreach ($data as $row) :
             $job_id = $row['job_id']; // Lấy ID bài viết từ dữ liệu
@@ -296,7 +298,16 @@ include("header.php");
                 </div>
             </div>
         <?php endforeach; ?>
-
+    </div>
+    <!-- nút phân trang -->
+    <div class="pagination">
+        <a href="" class="previous">&laquo;</a>
+        <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+            <a href="?page=<?php echo $i; ?>" <?php if ($i == $page) echo 'class="active"'; ?>>
+                <?php echo $i; ?>
+            </a>
+        <?php endfor; ?>
+        <a href="#" class="next">&raquo;</a>
     </div>
 </div>
 

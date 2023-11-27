@@ -5,11 +5,11 @@
         <div class="card-box mb-30">
             <h2 class="h4 pd-20 text-blue">Thống kê ứng viên tuyển dụng</h2>
             <?php
-            $sql = 'SELECT tbl_job.job_id, tbl_user.user_name,tbl_job.tencv,tbl_job.vt_tuyendung,tbl_job.muc_luong,tbl_job.ngay_het,tbl_apply.trangthaicv,tbl_apply.file_cv
+            $sql = 'SELECT tbl_job.job_id,user_name,tbl_job.tencv,tbl_job.vt_tuyendung,tbl_job.muc_luong,tbl_job.ngay_het,tbl_apply.trangthaicv,tbl_apply.file_cv
             FROM tbl_apply 
             INNER JOIN tbl_job ON tbl_job.job_id = tbl_apply.job_id
-            INNER JOIN tbl_user ON tbl_user.id_user = tbl_apply.id_user
-            WHERE tbl_apply.trangthaicv = "phê duyệt" AND tbl_job.cty_id =' . '"' . $id_user . '"';
+            INNER JOIN tbl_user2 ON tbl_user2.id_user = tbl_apply.id_user
+            WHERE (tbl_apply.trangthaicv = "phê duyệt" or tbl_apply.trangthaicv = "Từ chối" ) AND tbl_job.cty_id =' . '"' . $id_tktd . '"';
             // echo $sql;
             // exit();
             $re = mysqli_query($conn, $sql);
@@ -62,7 +62,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                         <a class="dropdown-item" href="../<?php echo 'view_cv.php?file=' . urlencode($row['file_cv']) . ' "' ?>"><i class="dw dw-eye"></i> Xem cv</a>
-                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> phê duyệt</a>
+                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Xoá</a>
                                     </div>
                                 </div>
                             </td>
@@ -72,7 +72,6 @@
             </table>
         </div>
 
-    </div>
-</div>
 
-<?php include("footer.php") ?>
+
+        <?php include("footer.php") ?>

@@ -1,20 +1,38 @@
 <?php
 session_start();
 include("model/config.php");
-$id_user = "";
+$id_user = "2";
 $user_name = "";
 $email = "";
 $phone = "";
-if(isset($_SESSION['tkungvien']) && isset($_SESSION['id_user'])){
-    $id_user = $_SESSION['id_user'];
-    $sua_sql = "SELECT * FROM tbl_user WHERE id_user = '$id_user'";
+if (isset($_SESSION['tkungvien']) && isset($_SESSION['id_tkuv'])) {
+    $id_user = $_SESSION['id_tkuv'];
+    $sua_sql = "SELECT * FROM tbl_user2
+                INNER JOIN tbl_taikhoan ON tbl_taikhoan.id_user = tbl_user2.id_user
+                WHERE tbl_user2.id_user = '$id_user'";
 
     $result = mysqli_query($conn, $sua_sql);
 
     $row2 = mysqli_fetch_assoc($result);
 
-    if (mysqli_num_rows($result) == 1){
-        $user_name = $row2['user_name'];
+    if (mysqli_num_rows($result) == 1) {
+        $user_name = $row2['tentk'];
+        $email = $row2['email'];
+        $phone = $row2['phone'];
+    }
+}
+if (isset($_SESSION['tktuyendung']) && isset($_SESSION['id_tktd'])) {
+    $id_user = $_SESSION['id_tktd'];
+    $sql = "SELECT * FROM tbl_user2
+                INNER JOIN tbl_taikhoan ON tbl_taikhoan.id_user = tbl_user2.id_user
+                WHERE tbl_user2.id_user = '$id_user'";
+
+    $result = mysqli_query($conn, $sql);
+
+    $row2 = mysqli_fetch_assoc($result);
+
+    if (mysqli_num_rows($result) == 1) {
+        $user_name = $row2['tentk'];
         $email = $row2['email'];
         $phone = $row2['phone'];
     }
@@ -46,6 +64,8 @@ if(isset($_SESSION['tkungvien']) && isset($_SESSION['id_user'])){
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="public/page_css/page.css">
 
 </head>
 

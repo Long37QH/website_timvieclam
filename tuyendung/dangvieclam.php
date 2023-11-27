@@ -18,8 +18,8 @@ include("header.php")
 
 				<form action="" method="post">
 					<div class="form-group">
-						<label for="id_user">Mã công ty</label>
-						<input class="form-control col-md-3" type="text" placeholder="ma" name="id_user" id="id_user">
+						<label for="id_user">Tên công ty</label>
+						<input class="form-control col-md-3" type="text" value="<?php echo $row2['user_name']; ?>" name="id_user" id="id_user" readonly>
 					</div>
 					<div class="form-group">
 						<label for="hinhanh">Hình ảnh nổi bật</label>
@@ -39,7 +39,7 @@ include("header.php")
 							<div class="form-group">
 								<label for="id_career">Ngành nghề</label>
 								<select class="custom-select col-12" name="id_career" id="id_career">
-									<option selected="">Bán hàng...</option>
+									<option selected="">Bán hàng</option>
 									<option value="1">Hành chính - thư ký</option>
 									<option value="2">IT - Công nghệ thông tin</option>
 									<option value="3">Khách sạn - du lịch</option>
@@ -54,7 +54,7 @@ include("header.php")
 							<div class="form-group">
 								<label for="hinhthuc_lv">Hình thức làm việc</label>
 								<select class="custom-select col-12" name="hinhthuc_lv" id="hinhthuc_lv">
-									<option selected="Full time">Full time...</option>
+									<option selected="Full time">Full time</option>
 									<option value="Part time">Part time</option>
 									<option value="Remote">Remote</option>
 									<option value="Intern">Intern</option>
@@ -71,7 +71,7 @@ include("header.php")
 							<div class="form-group">
 								<label for="kinh_nghiem">Trải qua</label>
 								<select class="custom-select col-12" id="kinh_nghiem" name="kinh_nghiem">
-									<option selected="">Chưa có kinh nghiệm...</option>
+									<option selected="">Chưa có kinh nghiệm</option>
 									<option value="1 năm kinh nghiệm">1 năm kinh nghiệm</option>
 									<option value="2 năm kinh nghiệm">2 năm kinh nghiệm</option>
 									<option value="3 năm kinh nghiệm">3 năm kinh nghiệm</option>
@@ -86,7 +86,7 @@ include("header.php")
 							<div class="form-group">
 								<label for="vt_tuyendung">Cấp độ nghề nghiệp</label>
 								<select class="custom-select col-12" id="vt_tuyendung" name="vt_tuyendung">
-									<option selected="Trưởng phòng">Trưởng phòng...</option>
+									<option selected="Trưởng phòng">Trưởng phòng</option>
 									<option value="Nhân viên">Nhân viên</option>
 									<option value="Giám đốc">Giám đốc</option>
 									<option value="Trưởng chi nhánh">Trưởng chi nhánh</option>
@@ -121,9 +121,9 @@ include("header.php")
 							<div class="form-group">
 								<label for="bang_cap">Bằng cấp</label>
 								<select class="custom-select col-12" id="bang_cap" name="bang_cap">
-									<option selected="Cao đẳng">Cao đẳng...</option>
-									<option value="trung cấp">trung cấp</option>
-									<option value="đại học">đại học</option>
+									<option selected="Cao đẳng">Cao đẳng</option>
+									<option value="trung cấp">Trung cấp</option>
+									<option value="đại học">Đại học</option>
 									<option value="Thạc sĩ">Thạc sĩ</option>
 								</select>
 							</div>
@@ -158,8 +158,8 @@ include("header.php")
 
 include('../model/config.php');
 if (isset($_POST['them'])) {
-	$id_user = $_POST['id_user'];
-	$cty_id = $_POST['id_user'];
+	$id_user = $id_tktd;
+	$id_cty =  $id_tktd;
 	$hinhanh = $_POST['hinhanh'];
 	$tencv = $_POST['tencv'];
 	$mota_cv = $_POST['mota_cv'];
@@ -173,7 +173,8 @@ if (isset($_POST['them'])) {
 	$bang_cap = $_POST['bang_cap'];
 	$khuvuc = $_POST['khuvuc'];
 	$trangthaibai = 'Chờ phê duyệt';
-	$themsql = "INSERT INTO tbl_job (id_user,cty_id,hinhanh, tencv, mota_cv, id_career ,hinhthuc_lv,kinh_nghiem,vt_tuyendung,ngay_het,do_tuoi,muc_luong,bang_cap,khuvuc,trangthaibai ) VALUES ('$id_user','$cty_id','$hinhanh','$tencv','$mota_cv' ,'$id_career','$hinhthuc_lv','$kinh_nghiem','$vt_tuyendung','$ngay_het','$do_tuoi','$muc_luong','$bang_cap','$khuvuc','$trangthaibai')";
+	$themsql = "INSERT INTO tbl_job (id_user,cty_id,hinhanh, tencv, mota_cv, id_career ,hinhthuc_lv,kinh_nghiem,vt_tuyendung,ngay_het,do_tuoi,muc_luong,bang_cap,khuvuc,trangthaibai ) 
+	VALUES ('$id_user','$id_cty','$hinhanh','$tencv','$mota_cv' ,'$id_career','$hinhthuc_lv','$kinh_nghiem','$vt_tuyendung','$ngay_het','$do_tuoi','$muc_luong','$bang_cap','$khuvuc','$trangthaibai')";
 	mysqli_query($conn, $themsql);
 	//echo $themsql; exit();
 	header("location: ./ds_dangpheduyet.php");
