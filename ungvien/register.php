@@ -1,3 +1,31 @@
+<?php
+ob_start();
+include('../model/config.php');
+if (isset($_POST["btn_dk"])) {
+    $user_name = $_POST["user_name"];
+    $email = $_POST["email"];
+    $phone = $_POST["phone"];
+    $diachi = $_POST["diachi"];
+    $gtinh = $_POST["gtinh"];
+    $tentk = $_POST["tentk"];
+    $pass = $_POST["pass"];
+    $loaitk = 2;
+
+    $themsql = "INSERT INTO tbl_user2 (user_name, email, phone, diachi ,gtinh ) 
+                    VALUES ('$user_name','$email','$phone' ,'$diachi','$gtinh')";
+    mysqli_query($conn, $themsql);
+
+    $themct = "INSERT INTO tblcongty (congty) VALUES ('$user_name')";
+    mysqli_query($conn, $themct);
+
+    $themtk = "INSERT INTO tbl_taikhoan (tentk, pass, loaitk) 
+                        VALUES ('$tentk','$pass','$loaitk')";
+    mysqli_query($conn, $themtk);
+
+    header("location: login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html dir="ltr">
 
@@ -9,16 +37,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="admin_css/assets/images/favicon.png"> -->
+    <link rel="icon" type="image/png" sizes="48x48" href="../public/images/title_icon.png" />
     <title>Đăng ký tài khoản ứng viên</title>
     <!-- Custom CSS -->
     <link href="admin_css/dist/css/style.min.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 
 <body>
@@ -32,12 +54,6 @@
                 <div class="lds-pos"></div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Login box.scss -->
-        <!-- ============================================================== -->
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative" style="background:url(admin_css/assets/images/big/auth-bg.jpg) no-repeat center center;">
             <div class="auth-box row text-center">
                 <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(admin_css/assets/images/big/3.jpg);">
@@ -48,25 +64,51 @@
                             <img src="../public/css_timviec/images/Logo.png" width="200" alt="wrapkit">
                         </div>
                         <h2 class="mt-3 text-center">Đăng ký tài khoản</h2>
-                        <form class="mt-4">
+                        <form class="mt-4" action="" method="post">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="your name">
+                                        <input class="form-control" type="text" name="user_name" placeholder="Tên ứng viên">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control" type="email" placeholder="email address">
+                                        <input class="form-control" type="email" name="email" placeholder="email">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control" type="password" placeholder="password">
+                                        <input class="form-control" type="text" name="phone" placeholder="Số điện thoại">
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="diachi" placeholder="Địa chỉ">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gtinh" id="Nam" value="Nam">
+                                        <label class="form-check-label" for="Nam">Nam</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gtinh" id="Nữ" value="Nữ">
+                                        <label class="form-check-label" for="Nữ">Nữ</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mt-3">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="tentk" placeholder="Tên tài khoản">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" name="pass" placeholder="Mật khẩu">
+                                    </div>
+                                </div>
+
                                 <div class="col-lg-12 text-center">
-                                    <button type="submit" class="btn btn-block btn-dark">Đăng ký</button>
+                                    <button type="submit" name="btn_dk" class="btn btn-block btn-dark">Đăng ký</button>
                                 </div>
                                 <div class="col-lg-12 text-center mt-5">
                                     Bạn đã có tài khoản? <a href="login.php" class="text-danger">Đăng nhập</a>

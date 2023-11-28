@@ -45,6 +45,7 @@ if (isset($_POST["login"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="48x48" href="../public/images/title_icon.png" />
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="admin_css/assets/images/favicon.png"> -->
     <title>Đăng nhập trang ứng viên</title>

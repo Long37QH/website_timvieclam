@@ -10,7 +10,7 @@ include("header.php");
 				</div>
 				<div class="col-md-8">
 					<h4 class="font-20 weight-500 mb-10 text-capitalize">
-						Welcome<div class="weight-600 font-30 text-blue">Johnny Brown!</div>
+						Welcome<div class="weight-600 font-30 text-blue"><?php echo $row2['user_name']; ?>!</div>
 					</h4>
 				</div>
 			</div>

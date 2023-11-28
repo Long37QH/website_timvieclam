@@ -20,6 +20,19 @@ if (isset($_SESSION['tkungvien']) && isset($_SESSION['id_tkuv'])) {
         $email = $row2['email'];
         $phone = $row2['phone'];
     }
+    //lấy menu khi ở phien ứng viên
+    $menu = "SELECT * FROM menu 
+					WHERE trangthaiAH = 'Hiển thị' AND loaimenu = '0' OR loaimenu = '1'
+					ORDER BY vitri ASC LIMIT 5";
+    $re = mysqli_query($conn, $menu);
+    $data = [];
+
+    while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
+        $data[] = array(
+            'tenMenu' => $row['tenMenu'],
+            'link' => $row['link'],
+        );
+    }
 }
 if (isset($_SESSION['tktuyendung']) && isset($_SESSION['id_tktd'])) {
     $id_user = $_SESSION['id_tktd'];
@@ -36,6 +49,34 @@ if (isset($_SESSION['tktuyendung']) && isset($_SESSION['id_tktd'])) {
         $email = $row2['email'];
         $phone = $row2['phone'];
     }
+
+    //lấy menu khi ở phien nhà tuyển dụng
+    $menu ="SELECT * FROM menu 
+            WHERE trangthaiAH = 'Hiển thị' AND loaimenu = '0' OR loaimenu = '2'
+            ORDER BY vitri ASC LIMIT 5";
+    $re = mysqli_query($conn, $menu);
+    $data = [];
+
+    while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
+        $data[] = array(
+            'tenMenu' => $row['tenMenu'],
+            'link' => $row['link'],
+        );
+    }
+}
+
+//lây menu khi chưa đăng nhập tài khoản
+if((!isset($_SESSION['tktuyendung']) && !isset($_SESSION['id_tktd'])) && (!isset($_SESSION['tkungvien']) && !isset($_SESSION['id_tkuv']))){
+    $menu = "SELECT * FROM menu WHERE trangthaiAH = 'Hiển thị' ORDER BY vitri ASC LIMIT 5";
+    $re = mysqli_query($conn, $menu);
+    $data = [];
+
+    while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
+        $data[] = array(
+            'tenMenu' => $row['tenMenu'],
+            'link' => $row['link'],
+        );
+    }
 }
 
 ?>
@@ -46,7 +87,8 @@ if (isset($_SESSION['tktuyendung']) && isset($_SESSION['id_tktd'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tìm việc làm</title>
-    <link rel="shortcut icon" href="https://cdn.worldvectorlogo.com/logos/bootstrap-4.svg" type="image/x-icon" />
+    <!-- <link rel="shortcut icon" href="https://cdn.worldvectorlogo.com/logos/bootstrap-4.svg" type="image/x-icon" /> -->
+    <link rel="icon" type="image/png" sizes="48x48" href="public/images/title_icon.png" />
     <link rel="stylesheet" href="public/plugin/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="public/plugin/fontawesome/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -74,38 +116,13 @@ if (isset($_SESSION['tktuyendung']) && isset($_SESSION['id_tktd'])) {
     <header class="container" style="display: flex;">
         <a href="index.php"><img class="logo" src="public/css_timviec/images/Logo.png" alt=""></a>
         <nav style="line-height: 40px;">
-            <?php
-            $menu = "SELECT * FROM menu WHERE trangthaiAH = 'Hiển thị' ORDER BY vitri ASC LIMIT 5";
-            $re = mysqli_query($conn, $menu);
-            $data = [];
-
-            while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
-                $data[] = array(
-                    'tenMenu' => $row['tenMenu'],
-                    'link' => $row['link'],
-                );
-            }
-            ?>
-
             <ul>
                 <?php foreach ($data as $row) : ?>
                     <li>
                         <a href="<?php echo $row['link']; ?>"><?php echo $row['tenMenu']; ?> </a>
                     </li>
                 <?php endforeach; ?>
-                <!-- <li>
-                  <a href="Blog.html">Bài viết</a>
-              </li>
-              <li>
-                  <a href="Blog.html">Tìm việc</a>
-              </li>
-              <li>
-                <a href="Blog.html">Tuyển dụng</a>
-              </li>
-              <li>
-                  <a href="contact.html">Liên hệ</a>
-              </li>
-              -->
+
                 <li style="margin-left: 10px;font-weight: bold;color: #f38121;"> <?php echo $user_name; ?></li>
                 <li>
                     <a href="#" class="menu-buttons"><i class="fas fa-user-tie"></i></a>

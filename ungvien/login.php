@@ -45,7 +45,7 @@ if (isset($_POST["login"])) {
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="admin_css/assets/images/favicon.png"> -->
+    <link rel="icon" type="image/png" sizes="48x48" href="../public/images/title_icon.png" />
     <title>Đăng nhập trang ứng viên</title>
     <!-- Custom CSS -->
     <link href="admin_css/dist/css/style.min.css" rel="stylesheet">
@@ -78,9 +78,9 @@ if (isset($_POST["login"])) {
                         <div class="text-center mt-3">
                             <img src="../public/css_timviec/images/Logo.png" width="200" alt="wrapkit">
                         </div>
-                        <h3 class="mt-3 text-center">Đăng Nhập</h3>
+                        <h3 class="mt-3 text-center">Đăng Nhập Ứng Viên</h3>
                         <!-- <p class="text-center">Enter your email address and password to access admin panel.</p> -->
-                        <form class="mt-4" action="" method="post" >
+                        <form class="mt-4" action="" method="post">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">

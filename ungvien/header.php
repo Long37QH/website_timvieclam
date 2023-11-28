@@ -3,10 +3,10 @@ include("../model/config.php");
 
 session_start();
 if (!isset($_SESSION['tkungvien'])) {
-    header('location:Login.php');
+	header('location:Login.php');
 } else {
-    $tkungvien = $_SESSION['tkungvien'];
-    $id_tkuv = $_SESSION['id_tkuv'];
+	$tkungvien = $_SESSION['tkungvien'];
+	$id_tkuv = $_SESSION['id_tkuv'];
 }
 
 
@@ -26,7 +26,7 @@ $row2 = mysqli_fetch_assoc($result);
 	<title>Tìm việc làm</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="24x24" href="../public/images/title_icon.png" />
 	<!-- <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png"> -->
 
@@ -57,19 +57,6 @@ $row2 = mysqli_fetch_assoc($result);
 </head>
 
 <body class="sidebar-light"> <!-- sidebar-dark -->
-	<!-- <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="vendors/images/deskapp-logo.svg" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> -->
-
 	<div class="header">
 		<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
@@ -171,7 +158,7 @@ $row2 = mysqli_fetch_assoc($result);
 						<span class="user-icon">
 							<img src="vendors/images/photo1.jpg" alt="">
 						</span>
-						<span class="user-name"><?php echo $row2['user_name'];?> </span>
+						<span class="user-name"><?php echo $row2['user_name']; ?> </span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>

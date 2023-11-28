@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2023 at 11:20 AM
+-- Generation Time: Nov 28, 2023 at 04:02 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -73,7 +73,11 @@ INSERT INTO `tblcongty` (`cty_id`, `congty`) VALUES
 (6, 'Công ty cổ phần Sen Đỏ'),
 (7, 'Công ty cổ phần sữa TH'),
 (8, 'Viettel Store Nghệ An'),
-(11, 'Công Ty TNHH TM DV Tổng Hợp Đăng Khoa');
+(11, 'Công Ty TNHH TM DV Tổng Hợp Đăng Khoa'),
+(17, 'thoavv'),
+(18, 'batman'),
+(19, 'Vi văn thoả2'),
+(20, 'CT Cntt Gostreams');
 
 -- --------------------------------------------------------
 
@@ -235,7 +239,22 @@ INSERT INTO `tbl_taikhoan` (`id_tk`, `id_user`, `tentk`, `pass`, `loaitk`) VALUE
 (9, 9, 'tuan2002', '123456', 2),
 (10, 10, 'longka', '123456', 2),
 (11, 11, 'ctykhoadang', '123456', 1),
-(13, 1, 'admin2', '123456', 0);
+(13, 13, 'admin2', '123456', 0),
+(16, 16, 'long22', '123456', 2),
+(17, 17, 'thoavv', '123456', 2),
+(18, 18, 'batman', '123456', 2),
+(19, 19, 'thoavv2', '123456', 2),
+(20, 20, 'ctgotream', '123456', 1);
+
+--
+-- Triggers `tbl_taikhoan`
+--
+DELIMITER $$
+CREATE TRIGGER `trigger_tang_id_usser` BEFORE INSERT ON `tbl_taikhoan` FOR EACH ROW BEGIN
+    SET NEW.id_user = (SELECT COALESCE(MAX(id_user), 0) + 1 FROM tbl_taikhoan);
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -284,26 +303,31 @@ CREATE TABLE `tbl_user2` (
   `email` varchar(50) NOT NULL,
   `diachi` varchar(50) NOT NULL,
   `gtinh` varchar(10) NOT NULL,
-  `sothich` varchar(200) NOT NULL,
-  `id_tk` int(11) NOT NULL
+  `sothich` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
 -- Dumping data for table `tbl_user2`
 --
 
-INSERT INTO `tbl_user2` (`id_user`, `user_name`, `phone`, `email`, `diachi`, `gtinh`, `sothich`, `id_tk`) VALUES
-(1, 'Admin', '01234567899', 'Timjobxyz@gmail.com', 'Tp Vinh - Nghệ An', '', '', 1),
-(2, 'root', '', '', '', '', '', 2),
-(3, 'CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC', '0321654987', 'congnghefgc@gmail.com', 'Tp Vinh - Nghệ An', '', '', 3),
-(4, 'Chi nhánh viên thông mobilephone miền trung', '0326985741', 'mobilephone@gmail.com', 'Nghĩa Đàn - Nghệ An', '', '', 4),
-(5, 'Công Ty Cổ Phần Tập Đoàn My House', '0888888888', 'MyHouse@gmail.com', 'Cầu Giấy - Hà Nội', '', '', 5),
-(6, 'Công ty cổ phần Sen Đỏ', '0326985741', 'Sendo@gmail.com', 'Tp Vinh - Nghệ An', '', '', 6),
-(7, 'Công ty cổ phần sữa TH', '0321654987', 'THCTCP@gmail.com', 'Tp Vinh - Nghệ An', '', '', 7),
-(8, 'Viettel Store Nghệ An', '0326985741', 'vietthel@gmail.com', 'Tp Vinh - Nghệ An', '', '', 8),
-(9, 'Đoàn Ngọc Tuấn', '01234567899', 'Tuandoan@gmail.com', 'Tp Vinh - Nghệ An', 'Nam', 'Xem phim, Chơi games', 9),
-(10, 'Đinh Viết Long', '0326985741', 'long@gmail.com.vn', 'Quỳ Hợp - Nghệ An', 'Nam', 'Xem phim, Chơi games', 10),
-(11, 'Công Ty TNHH TM DV Tổng Hợp Đăng Khoa', '01234567899', 'ĐangKhoa@gmail.com', 'Tp Vinh - Nghệ An', '', '', 11);
+INSERT INTO `tbl_user2` (`id_user`, `user_name`, `phone`, `email`, `diachi`, `gtinh`, `sothich`) VALUES
+(1, 'Admin', '01234567899', 'Timjobxyz@gmail.com', 'Tp Vinh - Nghệ An', '', ''),
+(2, 'root', '', '', '', '', ''),
+(3, 'CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ FGC', '0321654987', 'congnghefgc@gmail.com', 'Tp Vinh - Nghệ An', '', ''),
+(4, 'Chi nhánh viên thông mobilephone miền trung', '0326985741', 'mobilephone@gmail.com', 'Nghĩa Đàn - Nghệ An', '', ''),
+(5, 'Công Ty Cổ Phần Tập Đoàn My House', '0888888888', 'MyHouse@gmail.com', 'Cầu Giấy - Hà Nội', '', ''),
+(6, 'Công ty cổ phần Sen Đỏ', '0326985741', 'Sendo@gmail.com', 'Tp Vinh - Nghệ An', '', ''),
+(7, 'Công ty cổ phần sữa TH', '0321654987', 'THCTCP@gmail.com', 'Tp Vinh - Nghệ An', '', ''),
+(8, 'Viettel Store Nghệ An', '0326985741', 'vietthel@gmail.com', 'Tp Vinh - Nghệ An', '', ''),
+(9, 'Đoàn Ngọc Tuấn', '01234567899', 'Tuandoan@gmail.com', 'Tp Vinh - Nghệ An', 'Nam', 'Xem phim, Chơi games'),
+(10, 'Đinh Viết Long', '0326985741', 'long@gmail.com.vn', 'Quỳ Hợp - Nghệ An', 'Nam', 'Xem phim, Chơi games'),
+(11, 'Công Ty TNHH TM DV Tổng Hợp Đăng Khoa', '01234567899', 'ĐangKhoa@gmail.com', 'Tp Vinh - Nghệ An', '', ''),
+(13, 'admin2', '0888888888', 'Timjobxyz@gmail.com', 'Tp Vinh - Nghệ An', '', ''),
+(16, 'longka', '0888888888', 'long@gmail.com', 'Quỳ Hợp - Nghệ An', 'Nam', ''),
+(17, 'Vi văn thoả', '0399876725', 'thoavv@gmail.com', 'Tp Vinh - Nghe An', 'Nam', ''),
+(18, 'batman', '0852076725', 'badgun37@gmail.com', 'Dien Chau - Nghe An', 'Nam', ''),
+(19, 'Vi văn thoả2', '0852076725', 'tkchatgpt37@gmail.com', 'Dien Chau - Nghe An', 'Nam', ''),
+(20, 'CT Cntt Gostreams', '0399999998', 'Gostreams@gmail.com', 'Tp Vinh - Nghe An', '', '');
 
 --
 -- Indexes for dumped tables
@@ -377,7 +401,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `tblcongty`
 --
 ALTER TABLE `tblcongty`
-  MODIFY `cty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_apply`
@@ -407,13 +431,13 @@ ALTER TABLE `tbl_post`
 -- AUTO_INCREMENT for table `tbl_taikhoan`
 --
 ALTER TABLE `tbl_taikhoan`
-  MODIFY `id_tk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_tk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_user2`
 --
 ALTER TABLE `tbl_user2`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
