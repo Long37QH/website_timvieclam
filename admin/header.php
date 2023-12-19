@@ -158,18 +158,13 @@ $row = mysqli_fetch_assoc($result);
                                 <img src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31" />
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-account me-1 ms-1"></i> My Profile</a>
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-wallet me-1 ms-1"></i> Đăng xuất</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-email me-1 ms-1"></i> Inbox</a>
+
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-settings me-1 ms-1"></i> Account
-                                    Setting</a>
+                                <a class="dropdown-item" href="taikhoan_ds.php"><i class="mdi mdi-settings me-1 ms-1"></i> Quản lý tài khoản</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="logout.php"><i class="fa fa-power-off me-1 ms-1"></i> Đăng Xuất</a>
                                 <div class="dropdown-divider"></div>
-                                <div class="ps-4 p-10">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded text-white">View Profile</a>
-                                </div>
+
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -210,12 +205,6 @@ $row = mysqli_fetch_assoc($result);
                             </ul>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-face"></i>
-                                <span class="hide-menu">Quản lý tài khoản</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i>
                                 <span class="hide-menu">Quản lý bài tuyển dụng </span>
                             </a>
@@ -247,7 +236,7 @@ $row = mysqli_fetch_assoc($result);
                                 <span class="hide-menu">Quản lý ứng viên</span>
                             </a>
                         </li> -->
-                        
+
                         <!-- <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i>
                                 <span class="hide-menu">Addons </span>
