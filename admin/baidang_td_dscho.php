@@ -1,6 +1,63 @@
 <?php
 include('header.php');
+
+include('../model/config.php');
+
+if (isset($_POST["loc"])) {
+    $user_name = $_POST['user_name'];
+    $khuvuc = $_POST['khuvuc'];
+    $hinhthuc_lv = $_POST['hinhthuc_lv'];
+    $list_ds = "SELECT job_id,user_name, tencv,hinhthuc_lv,hinhanh,khuvuc,trangthaibai 
+    FROM tbl_job j INNER JOIN tbl_user2 u ON j.id_user = u.id_user 
+    WHERE trangthaibai = 'Chờ phê duyệt' and (user_name = '$user_name' or khuvuc = '$khuvuc' or hinhthuc_lv = '$hinhthuc_lv' );";
+
+    $re = mysqli_query($conn, $list_ds);
+
+    $data = [];
+
+    $TT = 1;
+    while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
+        $data[] = array(
+            //'TT' => $TT,
+            'job_id' => $row['job_id'],
+            'user_name' => $row['user_name'],
+            'tencv' => $row['tencv'],
+            'hinhanh' => $row['hinhanh'],
+            'hinhthuc_lv' => $row['hinhthuc_lv'],
+            'khuvuc' => $row['khuvuc'],
+            'trangthaibai' => $row['trangthaibai'],
+
+        );
+        //$TT++;
+    }
+} else {
+    $list_ds = "SELECT job_id,user_name, tencv,hinhthuc_lv,hinhanh,khuvuc,trangthaibai 
+    FROM tbl_job j INNER JOIN tbl_user2 u ON j.id_user = u.id_user 
+    WHERE trangthaibai = 'Chờ phê duyệt';";
+
+    $re = mysqli_query($conn, $list_ds);
+
+    $data = [];
+
+    $TT = 1;
+    while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
+        $data[] = array(
+            //'TT' => $TT,
+            'job_id' => $row['job_id'],
+            'user_name' => $row['user_name'],
+            'tencv' => $row['tencv'],
+            'hinhanh' => $row['hinhanh'],
+            'hinhthuc_lv' => $row['hinhthuc_lv'],
+            'khuvuc' => $row['khuvuc'],
+            'trangthaibai' => $row['trangthaibai'],
+
+        );
+        //$TT++;
+    }
+}
+
 ?>
+
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- nôi dung trang lam việc-->
@@ -34,44 +91,52 @@ include('header.php');
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Danh sách bài đăng</h5>
+
                         <div class="table-responsive">
-                            <?php
-                            include('../model/config.php');
-                            $list_ds = "SELECT job_id,user_name, tencv,hinhthuc_lv,hinhanh,khuvuc,trangthaibai 
-                            FROM tbl_job j INNER JOIN tbl_user2 u ON j.id_user = u.id_user 
-                            WHERE trangthaibai = 'Chờ phê duyệt';";
-
-                            $re = mysqli_query($conn, $list_ds);
-
-                            $data = [];
-
-                            $TT = 1;
-                            while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
-                                $data[] = array(
-                                    //'TT' => $TT,
-                                    'job_id' => $row['job_id'],
-                                    'user_name' => $row['user_name'],
-                                    'tencv' => $row['tencv'],
-                                    'hinhanh' => $row['hinhanh'],
-                                    'hinhthuc_lv' => $row['hinhthuc_lv'],
-                                    'khuvuc' => $row['khuvuc'],
-                                    'trangthaibai' => $row['trangthaibai'],
-
-                                );
-                                //$TT++;
-                            }
-                            ?>
+                            <form action="" method="post">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <select class="select2 form-select shadow-none" id="user_name" style="width: 100%; height: 36px" name="user_name">
+                                            <option value="">Công ty</option>
+                                            <?php foreach ($data as $row) : ?>
+                                                <option value="<?php echo $row['user_name']; ?>"><?php echo $row['user_name']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="select2 form-select shadow-none" id="khuvuc" style="width: 100%; height: 36px" name="khuvuc">
+                                            <option value="">Khu vực</option>
+                                            <?php foreach ($data as $row) : ?>
+                                                <option value="<?php echo $row['khuvuc']; ?>"><?php echo $row['khuvuc']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="select2 form-select shadow-none" id="hinhthuc_lv" style="width: 100%; height: 36px" name="hinhthuc_lv">
+                                            <option value="">Hình thức</option>
+                                            <?php foreach ($data as $row) : ?>
+                                                <option value="<?php echo $row['hinhthuc_lv']; ?>"><?php echo $row['hinhthuc_lv']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" name="loc" class="btn btn-primary "><i class="fa-solid fa-filter"></i> Lọc thông tin</button>
+                                        <!-- <input type="submit" value="Lọc thông tin" name="loc" class="btn btn-info "> -->
+                                    </div>
+                            </form>
+                            <div style="margin: 5px;"></div>
                             <table id="zero_config" class="table table-striped table-bordered">
+
                                 <thead>
                                     <tr>
                                         <th style="width: 15px;"><strong>TT</strong></th>
                                         <th style="width: 100px;"><strong>Tên Công ty</strong></th>
                                         <th style="width: 100px;"><strong>Vị trí</strong></th>
                                         <th style="width: 80px;"><strong>Hình ảnh</strong></th>
-                                        <th style="width: 90px;"><strong>Khu vực</strong></th>
+                                        <th style="width: 80px;"><strong>Khu vực</strong></th>
                                         <th style="width: 70px;"><strong>Hình thức </strong></th>
                                         <th style="width: 80px;"><strong>Trạng thái</strong></th>
-                                        <th ><strong>Chức năng</strong></th>
+                                        <th><strong>Chức năng</strong></th>
                                     </tr>
                                 </thead>
                                 <tbody>

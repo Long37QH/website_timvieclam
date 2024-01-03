@@ -1,6 +1,6 @@
 <?php
 include("header.php");
-$proFile = "SELECT * FROM tbl_user WHERE id_user = 'uv01'";
+$proFile = 'SELECT * FROM tbl_user2 WHERE id_user = ' . '"' . $id_tktd . '"';
 $re = mysqli_query($conn, $proFile);
 $data = [];
 
@@ -42,7 +42,7 @@ while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
                             <img src="vendors/images/photo1.jpg" alt="" class="avatar-photo">
 
                         </div>
-                        <h5 class="text-center h5 mb-0"> Đoàn ngọc tuấn </h5>
+                        <h5 class="text-center h5 mb-0"></h5>
                         <p class="text-center text-muted font-14"> PHP Developer</p>
                         <div class="profile-info">
                             <h5 class="mb-20 h5 text-blue">Thông Tin Nhà Tuyển Dụng</h5>
@@ -82,12 +82,12 @@ while ($row = mysqli_fetch_array($re, MYSQLI_ASSOC)) {
                                             <input type="text" class="form-control" value="<?php echo $row['diachi']; ?>" readonly>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-12">
+                                    <!-- <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
                                             <label>Sở thích</label>
                                             <input type="text" class="form-control" value="Xem phim, Chơi games" readonly>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             <?php endforeach;  ?>
                         </form>

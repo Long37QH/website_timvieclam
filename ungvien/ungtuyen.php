@@ -26,7 +26,7 @@ include("header.php")
 				FROM tbl_apply 
 				INNER JOIN tbl_job ON tbl_job.job_id = tbl_apply.job_id
 				INNER JOIN tbl_user2 ON tbl_user2.id_user = tbl_job.id_user
-				WHERE tbl_apply.trangthaicv = "Chờ phê duyệt" AND tbl_apply.id_user ='.'"'. $id_tkuv.'"';
+				WHERE tbl_apply.trangthaicv = "Chờ phê duyệt" AND tbl_apply.id_user =' . '"' . $id_tkuv . '"';
 
 		$re = mysqli_query($conn, $sql);
 
@@ -88,7 +88,7 @@ include("header.php")
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="../<?php echo $link; ?>"><i class="dw dw-eye"></i> View</a>
+										<a class="dropdown-item" href="../<?php echo $link; ?>"><i class="dw dw-eye"></i> Xem chi tiết</a>
 									</div>
 								</div>
 							</td>

@@ -15,7 +15,7 @@ if (isset($_POST["login"])) {
     if (empty($_POST["pass"])) {
         $error["pass"] = "Phải nhập mật khẩu";
     } else {
-        $pass = $_POST["pass"];
+        $pass = md5($_POST["pass"]);
     }
     // Truy vấn kiểm tra thông tin đăng nhập
     $role = 0;
@@ -48,7 +48,7 @@ if (isset($_POST["login"])) {
     <link rel="icon" type="image/png" sizes="48x48" href="../public/images/title_icon.png" />
     <!-- Favicon icon -->
     <!-- <link rel="icon" type="image/png" sizes="16x16" href="admin_css/assets/images/favicon.png"> -->
-    <title>Đăng nhập trang ứng viên</title>
+    <title>Đăng nhập trang quản trị</title>
     <!-- Custom CSS -->
     <link href="admin_css/dist/css/style.min.css" rel="stylesheet">
 

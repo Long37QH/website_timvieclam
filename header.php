@@ -51,7 +51,7 @@ if (isset($_SESSION['tktuyendung']) && isset($_SESSION['id_tktd'])) {
     }
 
     //lấy menu khi ở phien nhà tuyển dụng
-    $menu ="SELECT * FROM menu 
+    $menu = "SELECT * FROM menu 
             WHERE trangthaiAH = 'Hiển thị' AND loaimenu = '0' OR loaimenu = '2'
             ORDER BY vitri ASC LIMIT 5";
     $re = mysqli_query($conn, $menu);
@@ -66,7 +66,7 @@ if (isset($_SESSION['tktuyendung']) && isset($_SESSION['id_tktd'])) {
 }
 
 //lây menu khi chưa đăng nhập tài khoản
-if((!isset($_SESSION['tktuyendung']) && !isset($_SESSION['id_tktd'])) && (!isset($_SESSION['tkungvien']) && !isset($_SESSION['id_tkuv']))){
+if ((!isset($_SESSION['tktuyendung']) && !isset($_SESSION['id_tktd'])) && (!isset($_SESSION['tkungvien']) && !isset($_SESSION['id_tkuv']))) {
     $menu = "SELECT * FROM menu WHERE trangthaiAH = 'Hiển thị' ORDER BY vitri ASC LIMIT 5";
     $re = mysqli_query($conn, $menu);
     $data = [];
@@ -100,6 +100,7 @@ if((!isset($_SESSION['tktuyendung']) && !isset($_SESSION['id_tktd'])) && (!isset
     <link rel="stylesheet" href="public/css_timviec/css/style-menu.css">
     <link rel="stylesheet" href="public/css_timviec/css/t_style.css">
     <link rel="stylesheet" href="public/css_timviec/css/job.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- modal -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -122,12 +123,11 @@ if((!isset($_SESSION['tktuyendung']) && !isset($_SESSION['id_tktd'])) && (!isset
                         <a href="<?php echo $row['link']; ?>"><?php echo $row['tenMenu']; ?> </a>
                     </li>
                 <?php endforeach; ?>
-
-                <li style="margin-left: 10px;font-weight: bold;color: #f38121;"> <?php echo $user_name; ?></li>
                 <li>
-                    <a href="#" class="menu-buttons"><i class="fas fa-user-tie"></i></a>
+                    <a href="admin" class="menu-buttons" style="margin-left: 10px;font-weight: bold;color: #f38121;"><i class="fas fa-user-tie"></i> <?php echo $user_name; ?></a>
                 </li>
-
+                <!-- <li style="margin-left: 10px;font-weight: bold;color: #f38121;"> <?php //echo $user_name; 
+                                                                                        ?></li> -->
             </ul>
         </nav>
     </header>

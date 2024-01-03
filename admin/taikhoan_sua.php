@@ -54,7 +54,7 @@ $row = mysqli_fetch_assoc($result);
                             <div class="form-group row">
                                 <label for="pass" class="col-sm-3 text-end control-label col-form-label">mật khẩu</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="pass" name="pass" value="<?php echo $row['pass'] ?>" required />
+                                    <input type="text" class="form-control" id="pass" name="pass" value="" required />
                                 </div>
                             </div>
                         </div>
@@ -73,8 +73,8 @@ $row = mysqli_fetch_assoc($result);
 
         if (isset($_POST['capnhat'])) {
             $tentk = $_POST['tentk'];
-            $pass = $_POST['pass'];
-        
+            $pass = md5($_POST['pass']);
+
             $editsql = "UPDATE tbl_taikhoan SET tentk = '$tentk' , pass= '$pass'  WHERE id_tk = '$id_tk'";
             mysqli_query($conn, $editsql);
             //echo $themsql; exit();

@@ -27,14 +27,14 @@ include("header.php")
 					</div>
 					<div class="form-group">
 						<label for="tencv">Chức vụ</label>
-						<input class="form-control" type="text" name="tencv" id="tencv">
+						<input class="form-control" type="text" name="tencv" id="tencv" required="required">
 					</div>
-					<div class="form-group">
+					<div class=" form-group">
 						<label for="mota_cv">Mô tả việc làm</label>
-						<textarea class="form-control" name="mota_cv" id="mota_cv"></textarea>
+						<textarea class="form-control" name="mota_cv" id="mota_cv" required="required"></textarea>
 					</div>
 
-					<div class="row">
+					<div class=" row">
 						<div class="col-md-6 col-sm-12">
 							<div class="form-group">
 								<label for="id_career">Ngành nghề</label>
@@ -105,7 +105,7 @@ include("header.php")
 						<div class="col-md-6 col-sm-12">
 							<div class="form-group">
 								<label for="do_tuoi">Độ tuổi</label>
-								<input type="text" class="form-control" id="do_tuoi" name="do_tuoi">
+								<input type="text" class="form-control" id="do_tuoi" name="do_tuoi" required="required">
 							</div>
 						</div>
 					</div>
@@ -113,7 +113,7 @@ include("header.php")
 						<div class="col-md-6 col-sm-12">
 							<div class="form-group">
 								<label for="muc_luong">Lương</label>
-								<input type="text" class="form-control" id="muc_luong" name="muc_luong">
+								<input type="text" class="form-control" id="muc_luong" name="muc_luong" required="required">
 								</select>
 							</div>
 						</div>
@@ -132,7 +132,7 @@ include("header.php")
 
 					<div class="form-group">
 						<label for="khuvuc">Địa điểm</label>
-						<input class="form-control" type="text" placeholder="Johnny Brown" id="khuvuc" name="khuvuc">
+						<input class="form-control" type="text" placeholder="" id="khuvuc" name="khuvuc" required="required">
 
 					</div>
 					<div class="form-group d-grid gap-2 col-4 mx-auto">

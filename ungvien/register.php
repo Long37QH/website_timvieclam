@@ -1,28 +1,62 @@
 <?php
 ob_start();
 include('../model/config.php');
+require("lib/check_error.php");
 if (isset($_POST["btn_dk"])) {
-    $user_name = $_POST["user_name"];
-    $email = $_POST["email"];
-    $phone = $_POST["phone"];
-    $diachi = $_POST["diachi"];
-    $gtinh = $_POST["gtinh"];
-    $tentk = $_POST["tentk"];
-    $pass = $_POST["pass"];
-    $loaitk = 2;
+    $error = [];
+    if (empty($_POST["user_name"])) {
+        $error["user_name"] = "Phải nhập tên ứng viên";
+    } else {
+        $user_name = $_POST["user_name"];
+    }
+    if (empty($_POST["email"])) {
+        $error["email"] = "Phải nhập email";
+    } else {
+        $email = $_POST["email"];
+    }
+    if (empty($_POST["phone"])) {
+        $error["phone"] = "Phải nhập số điện thoại";
+    } else {
+        $phone = $_POST["phone"];
+    }
+    if (empty($_POST["diachi"])) {
+        $error["diachi"] = "Phải nhập địa chỉ";
+    } else {
+        $diachi = $_POST["diachi"];
+    }
+    if (empty($_POST["gtinh"])) {
+        $error["gtinh"] = "Phải điền thông tin giới tính";
+    } else {
+        $gtinh = $_POST["gtinh"];
+    }
+    if (empty($_POST["tentk"])) {
+        $error["tentk"] = "Phải nhập tên tài khoản";
+    } else {
+        $tentk = $_POST["tentk"];
+    }
+    if (empty($_POST["pass"])) {
+        $error["pass"] = "Phải nhập mật khẩu";
+    } else {
+        $pass = md5($_POST["pass"]);
+    }
 
-    $themsql = "INSERT INTO tbl_user2 (user_name, email, phone, diachi ,gtinh ) 
+
+    if (!empty($_POST["user_name"]) && !empty($_POST["email"]) && !empty($_POST["phone"]) && !empty($_POST["diachi"]) && !empty($_POST["gtinh"]) && !empty($_POST["tentk"]) && !empty($_POST["pass"])) {
+        $loaitk = 2;
+
+        $themsql = "INSERT INTO tbl_user2 (user_name, email, phone, diachi ,gtinh ) 
                     VALUES ('$user_name','$email','$phone' ,'$diachi','$gtinh')";
-    mysqli_query($conn, $themsql);
+        mysqli_query($conn, $themsql);
 
-    $themct = "INSERT INTO tblcongty (congty) VALUES ('$user_name')";
-    mysqli_query($conn, $themct);
+        $themct = "INSERT INTO tblcongty (congty) VALUES ('$user_name')";
+        mysqli_query($conn, $themct);
 
-    $themtk = "INSERT INTO tbl_taikhoan (tentk, pass, loaitk) 
+        $themtk = "INSERT INTO tbl_taikhoan (tentk, pass, loaitk) 
                         VALUES ('$tentk','$pass','$loaitk')";
-    mysqli_query($conn, $themtk);
+        mysqli_query($conn, $themtk);
 
-    header("location: login.php");
+        header("location: login.php");
+    }
 }
 ?>
 
@@ -56,7 +90,7 @@ if (isset($_POST["btn_dk"])) {
         </div>
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative" style="background:url(admin_css/assets/images/big/auth-bg.jpg) no-repeat center center;">
             <div class="auth-box row text-center">
-                <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(admin_css/assets/images/big/3.jpg);">
+                <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(admin_css/assets/images/big/bg_job.jpg);">
                 </div>
                 <div class="col-lg-5 col-md-7 bg-white">
                     <div class="p-3">
@@ -70,21 +104,33 @@ if (isset($_POST["btn_dk"])) {
                                     <div class="form-group">
                                         <input class="form-control" type="text" name="user_name" placeholder="Tên ứng viên">
                                     </div>
+                                    <p style="color:red">
+                                        <?php if (!empty($error['user_name'])) echo $error['user_name'] ?>
+                                    </p>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <input class="form-control" type="email" name="email" placeholder="email">
                                     </div>
+                                    <p style="color:red">
+                                        <?php if (!empty($error['email'])) echo $error['email'] ?>
+                                    </p>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <input class="form-control" type="text" name="phone" placeholder="Số điện thoại">
                                     </div>
+                                    <p style="color:red">
+                                        <?php if (!empty($error['phone'])) echo $error['phone'] ?>
+                                    </p>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <input class="form-control" type="text" name="diachi" placeholder="Địa chỉ">
                                     </div>
+                                    <p style="color:red">
+                                        <?php if (!empty($error['diachi'])) echo $error['diachi'] ?>
+                                    </p>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-check form-check-inline">
@@ -95,16 +141,25 @@ if (isset($_POST["btn_dk"])) {
                                         <input class="form-check-input" type="radio" name="gtinh" id="Nữ" value="Nữ">
                                         <label class="form-check-label" for="Nữ">Nữ</label>
                                     </div>
+                                    <p style="color:red">
+                                        <?php if (!empty($error['gtinh'])) echo $error['gtinh'] ?>
+                                    </p>
                                 </div>
                                 <div class="col-lg-12 mt-3">
                                     <div class="form-group">
                                         <input class="form-control" type="text" name="tentk" placeholder="Tên tài khoản">
                                     </div>
+                                    <p style="color:red">
+                                        <?php if (!empty($error['tentk'])) echo $error['tentk'] ?>
+                                    </p>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <input class="form-control" type="password" name="pass" placeholder="Mật khẩu">
                                     </div>
+                                    <p style="color:red">
+                                        <?php if (!empty($error['pass'])) echo $error['pass'] ?>
+                                    </p>
                                 </div>
 
                                 <div class="col-lg-12 text-center">

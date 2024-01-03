@@ -15,7 +15,7 @@ if (isset($_POST["login"])) {
     if (empty($_POST["pass"])) {
         $error["pass"] = "Phải nhập mật khẩu";
     } else {
-        $pass = $_POST["pass"];
+        $pass = md5($_POST["pass"]);
     }
     if (!empty($_POST["username"]) && !empty($_POST["pass"])) {
         $role = 2;

@@ -5,7 +5,7 @@ $sql = "SELECT * FROM tbl_job j INNER JOIN tbl_user2 u on u.id_user=j.id_user WH
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
-if(isset($_POST["btn_apply"])){
+if (isset($_POST["btn_apply"])) {
     // $job_id = $job_id;
     // $id_user = $id_user;
     $mess = $_POST['mess'];
@@ -161,18 +161,18 @@ if(isset($_POST["btn_apply"])){
                                                 <div class="modal-body">
                                                     <!-- Form nop ho so-->
                                                     <form id="addCandidateForm" action="" method="post" enctype="multipart/form-data">
-                                
+
                                                         <div class="form-group">
                                                             <label for="name">Tên ứng viên</label>
-                                                            <input type="text" class="form-control" id="name" name="name" value="<?php echo $user_name; ?>" placeholder="Nhập tên">
+                                                            <input type="text" class="form-control" id="name" name="name" value="<?php echo $user_name; ?>" placeholder="Nhập tên" required="required">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="email">Email</label>
-                                                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>" placeholder="Nhập email">
+                                                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>" placeholder="Nhập email" required="required">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="phone">Số điện thoại</label>
-                                                            <input type="tel" class="form-control" id="phone" name="phone" value="<?php echo $phone; ?>" placeholder="Nhập số điện thoại">
+                                                            <input type="tel" class="form-control" id="phone" name="phone" value="<?php echo $phone; ?>" placeholder="Nhập số điện thoại" required="required">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="mess">Tin nhắn</label>

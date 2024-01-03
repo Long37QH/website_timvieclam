@@ -32,7 +32,7 @@ if (isset($_POST["btn_dk"])) {
     if (empty($_POST["pass"])) {
         $error["pass"] = "Phải nhập mật khẩu người dùng";
     } else {
-        $pass = $_POST["pass"];
+        $pass = md5($_POST["pass"]);
     }
 
     if (!empty($_POST["user_name"]) && !empty($_POST["email"]) && !empty($_POST["phone"]) && !empty($_POST["diachi"]) && !empty($_POST["tentk"]) && !empty($_POST["email"]) && !empty($_POST["pass"])) {
@@ -90,7 +90,7 @@ if (isset($_POST["btn_dk"])) {
         <!-- ============================================================== -->
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative" style="background:url(admin_css/assets/images/big/auth-bg.jpg) no-repeat center center;">
             <div class="auth-box row text-center">
-                <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(admin_css/assets/images/big/3.jpg);">
+                <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(admin_css/assets/images/big/bg_job.jpg);">
                 </div>
                 <div class="col-lg-5 col-md-7 bg-white">
                     <div class="p-3">
@@ -161,7 +161,7 @@ if (isset($_POST["btn_dk"])) {
                                     </div>
                                     <p style="color: red;">
                                         <?php
-                                            if (!empty($error["pass"])) echo "" . $error["pass"] . "";
+                                        if (!empty($error["pass"])) echo "" . $error["pass"] . "";
                                         ?>
                                     </p>
                                 </div>

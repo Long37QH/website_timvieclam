@@ -2,7 +2,7 @@
      <div class="container page-footer__bottom text-center text-md-left text-primary">
          <div class="row text-center text-md-left mt-3 pb-3">
              <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                 <img src="images/Logo_White.png" alt="" class="footer-img" />
+                 <img src="public/images/logo2.png" alt="" class="footer-img" />
              </div>
 
              <div class="col-md-2 text__info col-lg-2 col-xl-2 mx-auto mt-3">
@@ -66,109 +66,7 @@
          </div>
          <hr class="w-100 clearfix d-md-none" />
 
-         <div class="row page_footer--category">
-             <div class="col-md-3 text__info col-lg-3 col-xl-3 mx-auto mt-3">
-                 <h6 class="text-uppercase mb-4 font-weight-bold text-white">
-                     Việc Làm Theo Ngành Nghề
-                 </h6>
-                 <div class="text__info--title">
-                     <p>
-                         <a href="#!">Việc Làm Kinh Doanh</a>
-                     </p>
-                     <p>
-                         <a href="#!">Việc Làm Bán Hàng</a>
-                     </p>
-                     <p>
-                         <a href="#!">Việc Làm Kế Toán</a>
-                     </p>
-                     <p>
-                         <a href="#!">Chăm Sóc Khách Hàng</a>
-                     </p>
-                     <div class="text__info--all">
-                         <p>
-                             <a class="text-primary" href="#!">Xem Tất Cả</a>&nbsp;<i class="fa fa-angle-double-right"></i>
-                         </p>
-                     </div>
-                 </div>
-             </div>
-             <hr class="w-100 clearfix d-md-none" />
-             <div class="col-md-2 text__info col-lg-2 col-xl-2 mx-auto mt-3">
-                 <h6 class="text-uppercase mb-4 font-weight-bold text-white">
-                     Việc Làm Công Ty
-                 </h6>
-                 <div class="text__info--title">
-                     <p>
-                         <a href="#!">VinFast Tuyển Dụng</a>
-                     </p>
-                     <p>
-                         <a href="#!">Vinhuni Tuyển Dụng</a>
-                     </p>
-                     <p>
-                         <a href="#!">Family Tuyển Dụng</a>
-                     </p>
-                     <p>
-                         <a href="#!">Nhà Tao Tuyển Dụng</a>
-                     </p>
-                     <div class="text__info--all">
-                         <p>
-                             <a class="text-primary" href="#!">Xem Tất Cả</a>&nbsp;<i class="fa fa-angle-double-right"></i>
-                         </p>
-                     </div>
-                 </div>
-             </div>
-             <hr class="w-100 clearfix d-md-none" />
-             <div class="col-md-3 text__info col-lg-2 col-xl-2 mx-auto mt-3">
-                 <h6 class="text-uppercase mb-4 font-weight-bold text-white">
-                     VIỆC LÀM THEO TỈNH
-                 </h6>
-                 <div class="text__info--title">
-                     <p>
-                         <a href="#!">Việc Làm Nghệ An</a>
-                     </p>
-                     <p>
-                         <a href="#!">Việc Làm Hà Nội</a>
-                     </p>
-                     <p>
-                         <a href="#!">Việc Làm Quảng Ngãi</a>
-                     </p>
-                     <p>
-                         <a href="#!">Việc Làm Vũng Tàu</a>
-                     </p>
-                     <div class="text__info--all">
-                         <p>
-                             <a class="text-primary" href="#!">Xem Tất Cả</a>&nbsp;<i class="fa fa-angle-double-right"></i>
-                         </p>
-                     </div>
-                 </div>
-             </div>
-             <hr class="w-100 clearfix d-md-none" />
-             <div class="col-md-4 text__info col-lg-3 col-xl-3 mx-auto mt-3">
-                 <h6 class="text-uppercase mb-4 font-weight-bold text-white">
-                     Việc Làm Hấp Dẫn
-                 </h6>
-
-                 <div class="text__info--title">
-                     <p>
-                         <a href="#!">Tìm Việc Làm</a>
-                     </p>
-                     <p>
-                         <a href="#!">Việc Làm Thêm</a>
-                     </p>
-                     <p>
-                         <a href="#!">Lao Động Phổ Thong</a>
-                     </p>
-                     <p>
-                         <a href="#!">Thực Tập Sinh</a>
-                     </p>
-                     <div class="text__info--all">
-                         <p>
-                             <a class="text-primary" href="#!">Xem Tất Cả</a>&nbsp;<i class="fa fa-angle-double-right"></i>
-                         </p>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <hr />
+         
          <div class="row d-flex align-items-center">
              <div class="col-md-7 col-lg-8">
 
@@ -210,7 +108,7 @@
  <script src="public/js/main.js"></script>
 
  <!-- blog -->
- 
+
  <script src="public/css_timviec/js/bootstrap.min.js "></script>
  <script src="public/css_timviec/js/popper.min.js "></script>
  </body>

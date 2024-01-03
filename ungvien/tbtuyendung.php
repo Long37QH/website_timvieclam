@@ -26,7 +26,7 @@ include("header.php")
 							FROM tbl_apply 
 							INNER JOIN tbl_job ON tbl_job.job_id = tbl_apply.job_id
 							INNER JOIN tbl_user2 ON tbl_user2.id_user = tbl_job.id_user
-                            WHERE (tbl_apply.trangthaicv = "phê duyệt" OR tbl_apply.trangthaicv = "Từ chối") AND tbl_apply.id_user ='.'"'. $id_tkuv.'"';
+                            WHERE (tbl_apply.trangthaicv = "phê duyệt" OR tbl_apply.trangthaicv = "Từ chối") AND tbl_apply.id_user =' . '"' . $id_tkuv . '"';
 
         $re = mysqli_query($conn, $sql);
 
@@ -45,9 +45,9 @@ include("header.php")
                 'trangthaicv' => $row['trangthaicv'],
                 'file_cv' => $row['file_cv'],
             );
-            $TT++;   
+            $TT++;
         }
-        
+
         ?>
 
         <div class="card-box mb-30">
@@ -89,7 +89,7 @@ include("header.php")
                                         <i class="dw dw-more"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                        <a class="dropdown-item" href="../<?php echo $link; ?>"><i class="dw dw-eye"></i> View</a>
+                                        <a class="dropdown-item" href="../<?php echo $link; ?>"><i class="dw dw-eye"></i> Xem</a>
                                     </div>
                                 </div>
                             </td>

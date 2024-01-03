@@ -81,7 +81,7 @@ include("header.php");
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="../<?php echo $link; ?>"><i class="dw dw-eye"></i> View</a>
+										<a class="dropdown-item" href="../<?php echo $link; ?>"><i class="dw dw-eye"></i> Xem chi tiết</a>
 										<a onclick="return confirm('bạn có muốn xoá không ?');" class="dropdown-item" href="xoa_cv.php?sid=<?php echo $row['ap_id']; ?>"><i class="dw dw-delete-3"></i> Xoá</a>
 									</div>
 								</div>
